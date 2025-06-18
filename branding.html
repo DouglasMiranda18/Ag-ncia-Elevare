@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,7 @@
             --bege-medio: #d4c0a8;
             --marrom-acinzentado: #826f59;
         }
-
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bege-claro);
@@ -21,33 +20,33 @@
             margin: 0;
             padding: 0;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
+        
         .header {
             background-color: var(--azul-escuro);
             color: white;
             padding: 1rem 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
+        
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
             color: white;
         }
-
+        
         .nav-links a {
             color: white;
             text-decoration: none;
@@ -55,11 +54,11 @@
             transition: color 0.3s;
             cursor: pointer;
         }
-
+        
         .nav-links a:hover {
             color: var(--bege-claro);
         }
-
+        
         .card {
             background-color: white;
             border-radius: 8px;
@@ -67,14 +66,14 @@
             margin-bottom: 2rem;
             padding: 1.5rem;
         }
-
+        
         .form-section {
             border-left: 4px solid var(--azul-claro);
             background-color: white;
             padding: 1.5rem;
             margin-bottom: 2rem;
         }
-
+        
         .section-title {
             color: var(--azul-escuro);
             border-bottom: 2px solid var(--bege-medio);
@@ -83,38 +82,41 @@
             font-size: 1.25rem;
             font-weight: 600;
         }
-
+        
         .form-group {
             margin-bottom: 1rem;
         }
-
+        
         .form-label {
             display: block;
             margin-bottom: 0.5rem;
             color: #555;
         }
-
-        .form-control {
-            width: 100%;
+        
+        /* Ajuste para inputs e textareas dentro do modal de visualização */
+        .modal-body .form-control {
+            width: calc(100% - 1.5rem); /* Ajusta para padding */
+            background-color: #f8f8f8; /* Fundo levemente diferente */
+            border: 1px solid #e0e0e0;
             padding: 0.75rem;
-            border: 1px solid #ddd;
             border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border 0.3s;
+            font-size: 0.95rem;
+            color: #333;
+            box-sizing: border-box; /* Inclui padding e borda na largura */
         }
-
+        
         .form-control:focus {
             border-color: var(--azul-claro);
             outline: none;
             box-shadow: 0 0 0 3px rgba(85, 174, 190, 0.25);
         }
-
+        
         textarea.form-control {
-            min-height: 100px;
-            resize: vertical;
+            min-height: 80px; /* Reduz a altura mínima para ser mais flexível */
+            resize: vertical; /* Permite redimensionar manualmente se necessário */
+            overflow-y: hidden; /* Oculta a barra de rolagem inicial e permite o auto-resize JS */
         }
-
+        
         .btn {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -126,74 +128,74 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
+        
         .btn-primary {
             background-color: var(--azul-escuro);
             color: white;
         }
-
+        
         .btn-primary:hover {
             background-color: var(--azul-claro);
         }
-
+        
         .btn-secondary {
             background-color: var(--marrom-acinzentado);
             color: white;
         }
-
+        
         .btn-secondary:hover {
             background-color: #9a8569;
         }
-
+        
         .btn-block {
             display: block;
             width: 100%;
         }
-
+        
         .text-center {
             text-align: center;
         }
-
+        
         .page-title {
             color: var(--azul-escuro);
             margin-bottom: 0.5rem;
             font-size: 2rem;
             font-weight: bold;
         }
-
+        
         .page-subtitle {
             color: #666;
             margin-bottom: 2rem;
         }
-
+        
         .admin-container {
             display: flex;
             min-height: calc(100vh - 64px);
         }
-
+        
         .admin-sidebar {
             width: 250px;
             background-color: var(--azul-escuro);
             color: white;
             padding: 1.5rem;
         }
-
+        
         .admin-content {
             flex: 1;
             padding: 1.5rem;
             background-color: var(--bege-claro);
         }
-
+        
         .admin-menu {
             list-style: none;
             padding: 0;
             margin: 2rem 0;
         }
-
+        
         .admin-menu-item {
             margin-bottom: 0.5rem;
         }
-
+        
         .admin-menu-link {
             display: block;
             padding: 0.75rem;
@@ -202,31 +204,31 @@
             border-radius: 4px;
             transition: background-color 0.3s;
         }
-
+        
         .admin-menu-link:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
-
+        
         .admin-menu-link.active {
             background-color: var(--azul-claro);
         }
-
+        
         .user-info {
             margin-top: 2rem;
             padding-top: 1rem;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
-
+        
         .response-card {
             border-left: 4px solid var(--azul-claro);
             cursor: pointer;
             transition: box-shadow 0.3s;
         }
-
+        
         .response-card:hover {
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
-
+        
         .modal {
             display: none;
             position: fixed;
@@ -236,13 +238,11 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            overflow-y: auto;
+            overflow-y: auto; /* Permite rolagem do overlay se o modal for muito alto */
             justify-content: center;
-            /* Centraliza o modal */
             align-items: center;
-            /* Centraliza o modal */
         }
-
+        
         .modal-content {
             background-color: white;
             margin: 2rem auto;
@@ -250,14 +250,15 @@
             border-radius: 8px;
             max-width: 800px;
             position: relative;
+            overflow-y: auto; /* Permite rolagem do conteúdo do modal se for muito alto */
+            max-height: 90vh; /* Limita a altura do modal para caber na tela */
+            box-sizing: border-box; /* Inclui padding na altura */
         }
-
+        
         /* Estilo específico para o modal de login para torná-lo menor */
         #login-modal-content {
             max-width: 400px;
-            /* Largura menor para o modal de login */
             padding: 2rem;
-            /* Mais padding para o formulário de login */
         }
 
         .modal-header {
@@ -268,14 +269,14 @@
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .modal-title {
             color: var(--azul-escuro);
             font-size: 1.5rem;
             font-weight: bold;
             margin: 0;
         }
-
+        
         .close-modal {
             background: none;
             border: none;
@@ -283,17 +284,17 @@
             cursor: pointer;
             color: #999;
         }
-
+        
         .close-modal:hover {
             color: #333;
         }
-
+        
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1rem;
         }
-
+        
         .toast {
             position: fixed;
             bottom: 20px;
@@ -306,19 +307,19 @@
             transition: opacity 0.3s;
             z-index: 1100;
         }
-
+        
         .toast.show {
             opacity: 1;
         }
-
+        
         .toast-success {
             background-color: #48bb78;
         }
-
+        
         .toast-error {
             background-color: #f56565;
         }
-
+        
         .loader {
             display: inline-block;
             width: 24px;
@@ -329,34 +330,62 @@
             animation: spin 1s linear infinite;
             margin-left: 0.5rem;
         }
-
+        
         @keyframes spin {
             to {
                 transform: rotate(360deg);
             }
         }
-
+        
         .hidden {
             display: none;
         }
 
+        /* Estilos para o conteúdo do modal de detalhes (para melhor visualização) */
+        .modal-section-content p {
+            margin-bottom: 0.5rem; /* Adiciona espaçamento entre parágrafos */
+            line-height: 1.5; /* Melhora a legibilidade do texto */
+        }
+        .modal-section-content strong {
+            display: block; /* Garante que o rótulo da pergunta fique em sua própria linha */
+            color: #555;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Estilo para ajustar inputs e textareas no modal de detalhes */
+        .modal-detail-value {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #e0e0e0;
+            background-color: #f8f8f8;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            white-space: pre-wrap; /* Preserva quebras de linha e espaços */
+            word-break: break-word; /* Quebra palavras longas */
+        }
+        
         @media (max-width: 768px) {
             .admin-container {
                 flex-direction: column;
             }
-
+            
             .admin-sidebar {
                 width: 100%;
                 padding: 1rem;
             }
-
+            
             .grid {
                 grid-template-columns: 1fr;
+            }
+            .modal-content {
+                margin: 1rem; /* Margem menor em telas pequenas */
+                max-width: calc(100% - 2rem); /* Ajusta a largura para telas menores */
             }
         }
     </style>
 </head>
-
 <body>
     <header class="header">
         <div class="container">
@@ -371,7 +400,7 @@
     </header>
 
     <div class="container" id="main-content">
-    </div>
+        </div>
 
     <div id="toast" class="toast">
         <span id="toast-message"></span>
@@ -384,7 +413,7 @@
                 <button class="close-modal" id="close-briefing-modal">&times;</button>
             </div>
             <div id="briefing-modal-body">
-            </div>
+                </div>
         </div>
         <div class="modal-content hidden" id="login-modal-content">
             <div class="modal-header">
@@ -392,7 +421,7 @@
                 <button class="close-modal" id="close-login-modal">&times;</button>
             </div>
             <div id="login-modal-body">
-            </div>
+                </div>
         </div>
     </div>
 
@@ -407,7 +436,7 @@
             authDomain: "elevare-981b1.firebaseapp.com",
             projectId: "elevare-981b1",
             storageBucket: "elevare-981b1.firebasestorage.app",
-            messagingSenderId: "1034421294665",
+            messagingSenderId: "1034421294665", 
             appId: "1:1034421294665:web:f2535ece4f604ca4a21198",
             measurementId: "G-BGJJVBSE2C"
         };
@@ -638,7 +667,7 @@
             `;
 
             // Adiciona o manipulador de submissão do formulário
-            document.getElementById('briefing-form').addEventListener('submit', async function (e) {
+            document.getElementById('briefing-form').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const submitBtn = document.getElementById('submit-btn');
                 const submitText = document.getElementById('submit-text');
@@ -703,7 +732,8 @@
                     <div id="login-error" class="text-center" style="color: #f56565; margin-top: 1rem; display: none;"></div>
                     
                     <div class="text-center" style="margin-top: 1rem; color: #666; font-size: 0.875rem;">
-                        
+                        <p>Para teste: admin@elevare.com / admin12345</p>
+                        <p><strong>Crie este usuário no Firebase Authentication para que o login funcione.</strong></p>
                     </div>
                 </form>
             `;
@@ -717,12 +747,12 @@
             // Remove e anexa novamente o event listener para evitar duplicações
             // Esta é uma correção crucial para evitar múltiplos manipuladores em formulários dinamicamente carregados
             const oldLoginForm = document.getElementById('login-form');
-            if (oldLoginForm) {
+            if (oldLoginForm) { 
                 const newLoginForm = oldLoginForm.cloneNode(true);
                 oldLoginForm.parentNode.replaceChild(newLoginForm, oldLoginForm);
             }
 
-            document.getElementById('login-form').addEventListener('submit', async function (e) {
+            document.getElementById('login-form').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
@@ -744,7 +774,7 @@
                 } catch (error) {
                     console.error('Erro de login:', error);
                     let errorMessage = 'Ocorreu um erro ao fazer login. Tente novamente.';
-                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') { // Removi a duplicação aqui
+                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') { 
                         errorMessage = 'E-mail ou senha incorretos.';
                     } else if (error.code === 'auth/invalid-email') {
                         errorMessage = 'Formato de e-mail inválido.';
@@ -824,7 +854,7 @@
             `;
 
             // Botão de Logout
-            document.getElementById('logout-btn').addEventListener('click', async function () {
+            document.getElementById('logout-btn').addEventListener('click', async function() {
                 try {
                     await auth.signOut();
                     showToast('Logout realizado com sucesso', 'success');
@@ -883,9 +913,9 @@
                         const contactEmail = (briefing.contact_email || '').toLowerCase();
 
                         return companyName.includes(lowerCaseSearchTerm) ||
-                            contactName.includes(lowerCaseSearchTerm) ||
-                            companySegment.includes(lowerCaseSearchTerm) ||
-                            contactEmail.includes(lowerCaseSearchTerm);
+                               contactName.includes(lowerCaseSearchTerm) ||
+                               companySegment.includes(lowerCaseSearchTerm) ||
+                               contactEmail.includes(lowerCaseSearchTerm);
                     });
                 }
 
@@ -970,12 +1000,23 @@
         function attachResponseCardHandlers() {
             const responseCards = document.querySelectorAll('.response-card');
             responseCards.forEach(card => {
-                card.addEventListener('click', function () {
+                card.addEventListener('click', function() {
                     const briefingId = this.dataset.id;
                     showBriefingDetailModal(briefingId);
                 });
             });
         }
+
+        // --- NOVO CÓDIGO AQUI: Função para auto-redimensionar textareas ---
+        function autoResizeTextareas() {
+            const textareas = document.querySelectorAll('#briefing-modal-body textarea');
+            textareas.forEach(textarea => {
+                textarea.style.height = 'auto'; // Reseta a altura para que scrollHeight seja preciso
+                // Ajusta a altura para o scrollHeight, garantindo um mínimo para textareas vazias
+                textarea.style.height = Math.max(textarea.scrollHeight, 80) + 'px'; // 80px é o min-height CSS original
+            });
+        }
+        // --- FIM DO NOVO CÓDIGO ---
 
         // Mostra o modal de detalhes do briefing
         function showBriefingDetailModal(briefingId) {
@@ -1002,8 +1043,9 @@
 
                     briefingModalTitle.textContent = `Briefing: ${briefing.company_name || 'Empresa não informada'}`;
 
+                    // Conteúdo dinâmico do modal
                     briefingModalBody.innerHTML = `
-                        <div style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
                             <div>
                                 <p style="font-size: 0.875rem; color: #666; margin: 0;">
                                     Enviado em: ${formatDate(briefing.timestamp)}
@@ -1023,8 +1065,8 @@
                                 </div>
                             </div>
                             ${currentAdminUser ? `
-                            <div>
-                                <select id="status-select" class="form-control" style="width: auto; display: inline-block; margin-right: 0.5rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                                <select id="status-select" class="form-control" style="width: auto; flex-grow: 1;">
                                     <option value="novo" ${briefing.status === 'novo' ? 'selected' : ''}>Novo</option>
                                     <option value="em_analise" ${briefing.status === 'em_analise' ? 'selected' : ''}>Em análise</option>
                                     <option value="respondido" ${briefing.status === 'respondido' ? 'selected' : ''}>Respondido</option>
@@ -1036,75 +1078,75 @@
                         
                         <div style="margin-bottom: 1.5rem;">
                             <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Sobre a empresa</h4>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
-                                <div><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Nome da empresa</p><p style="margin-top: 0;">${briefing.company_name || 'Não informado'}</p></div>
-                                <div><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Segmento de atuação</p><p style="margin-top: 0;">${briefing.company_segment || 'Não informado'}</p></div>
+                            <div class="grid">
+                                <div><p><strong>Nome da empresa</strong></p><div class="modal-detail-value">${briefing.company_name || 'Não informado'}</div></div>
+                                <div><p><strong>Segmento de atuação</strong></p><div class="modal-detail-value">${briefing.company_segment || 'Não informado'}</div></div>
                             </div>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Descrição da empresa</p><p style="margin-top: 0;">${briefing.company_description || 'Não informado'}</p></div>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Diferenciais</p><p style="margin-top: 0;">${briefing.company_differentials || 'Não informado'}</p></div>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Concorrentes</p><p style="margin-top: 0;">${briefing.company_competitors || 'Não informado'}</p></div>
+                            <div><p><strong>Descrição da empresa</strong></p><div class="modal-detail-value">${briefing.company_description || 'Não informado'}</div></div>
+                            <div><p><strong>Diferenciais</strong></p><div class="modal-detail-value">${briefing.company_differentials || 'Não informado'}</div></div>
+                            <div><p><strong>Concorrentes</strong></p><div class="modal-detail-value">${briefing.company_competitors || 'Não informado'}</div></div>
                         </div>
                         
                         <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
                             <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Objetivos</h4>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Principais objetivos</p><p style="margin-top: 0;">${briefing.project_objectives || 'Não informado'}</p></div>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Público-alvo</p><p style="margin-top: 0;">${briefing.target_audience || 'Não informado'}</p></div>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Resultados esperados</p><p style="margin-top: 0;">${briefing.expected_results || 'Não informado'}</p></div>
+                            <div><p><strong>Principais objetivos</strong></p><div class="modal-detail-value">${briefing.project_objectives || 'Não informado'}</div></div>
+                            <div><p><strong>Público-alvo</strong></p><div class="modal-detail-value">${briefing.target_audience || 'Não informado'}</div></div>
+                            <div><p><strong>Resultados esperados</strong></p><div class="modal-detail-value">${briefing.expected_results || 'Não informado'}</div></div>
                         </div>
                         
                         <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
                             <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Identidade visual</h4>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
-                                <div><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Possui logotipo?</p><p style="margin-top: 0;">${briefing.has_logo || 'Não informado'}</p></div>
-                                <div><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Possui manual de identidade?</p><p style="margin-top: 0;">${briefing.has_brand_manual || 'Não informado'}</p></div>
+                            <div class="grid">
+                                <div><p><strong>Possui logotipo?</strong></p><div class="modal-detail-value">${briefing.has_logo || 'Não informado'}</div></div>
+                                <div><p><strong>Possui manual de identidade?</strong></p><div class="modal-detail-value">${briefing.has_brand_manual || 'Não informado'}</div></div>
                             </div>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Cores da marca</p><p style="margin-top: 0;">${briefing.brand_colors || 'Não informado'}</p></div>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Estilo visual preferido</p><p style="margin-top: 0;">${briefing.visual_style || 'Não informado'}</p></div>
+                            <div><p><strong>Cores da marca</strong></p><div class="modal-detail-value">${briefing.brand_colors || 'Não informado'}</div></div>
+                            <div><p><strong>Estilo visual preferido</strong></p><div class="modal-detail-value">${briefing.visual_style || 'Não informado'}</div></div>
                         </div>
                         
                         <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
                             <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Comunicação</h4>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Tom de voz da marca</p><p style="margin-top: 0;">${briefing.brand_tone || 'Não informado'}</p></div>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Principais mensagens</p><p style="margin-top: 0;">${briefing.key_messages || 'Não informado'}</p></div>
+                            <div><p><strong>Tom de voz da marca</strong></p><div class="modal-detail-value">${briefing.brand_tone || 'Não informado'}</div></div>
+                            <div><p><strong>Principais mensagens</strong></p><div class="modal-detail-value">${briefing.key_messages || 'Não informado'}</div></div>
                         </div>
                         
                         <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
                             <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Site</h4>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Páginas/seções desejadas</p><p style="margin-top: 0;">${briefing.site_sections || 'Não informado'}</p></div>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                                <div><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Possui domínio?</p><p style="margin-top: 0;">${briefing.has_domain || 'Não informado'}</p></div>
-                                <div><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Possui hospedagem?</p><p style="margin-top: 0;">${briefing.has_hosting || 'Não informado'}</p></div>
+                            <div><p><strong>Páginas/seções desejadas</strong></p><div class="modal-detail-value">${briefing.site_sections || 'Não informado'}</div></div>
+                            <div class="grid" style="margin-top: 1rem;">
+                                <div><p><strong>Possui domínio?</strong></p><div class="modal-detail-value">${briefing.has_domain || 'Não informado'}</div></div>
+                                <div><p><strong>Possui hospedagem?</strong></p><div class="modal-detail-value">${briefing.has_hosting || 'Não informado'}</div></div>
                             </div>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Funcionalidades desejadas</p><p style="margin-top: 0;">${briefing.site_features || 'Não informado'}</p></div>
+                            <div><p><strong>Funcionalidades desejadas</strong></p><div class="modal-detail-value">${briefing.site_features || 'Não informado'}</div></div>
                         </div>
                         
                         <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
                             <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Inspirações</h4>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Sites de referência</p><p style="margin-top: 0;">${briefing.reference_sites || 'Não informado'}</p></div>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">O que gosta nas referências</p><p style="margin-top: 0;">${briefing.reference_likes || 'Não informado'}</p></div>
+                            <div><p><strong>Sites de referência</strong></p><div class="modal-detail-value">${briefing.reference_sites || 'Não informado'}</div></div>
+                            <div><p><strong>O que gosta nas referências</strong></p><div class="modal-detail-value">${briefing.reference_likes || 'Não informado'}</div></div>
                         </div>
                         
                         <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
                             <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Informações técnicas</h4>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Preferências de tecnologia</p><p style="margin-top: 0;">${briefing.tech_preferences || 'Não informado'}</p></div>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Integrações necessárias</p><p style="margin-top: 0;">${briefing.integrations || 'Não informado'}</p></div>
+                            <div><p><strong>Preferências de tecnologia</strong></p><div class="modal-detail-value">${briefing.tech_preferences || 'Não informado'}</div></div>
+                            <div><p><strong>Integrações necessárias</strong></p><div class="modal-detail-value">${briefing.integrations || 'Não informado'}</div></div>
                         </div>
                         
                         <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
                             <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Observações</h4>
-                            <div style="margin-top: 1rem;"><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Informações adicionais</p><p style="margin-top: 0;">${briefing.additional_info || 'Não informado'}</p></div>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                                <div><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Prazo desejado</p><p style="margin-top: 0;">${briefing.project_deadline || 'Não informado'}</p></div>
-                                <div><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Orçamento disponível</p><p style="margin-top: 0;">${briefing.project_budget || 'Não informado'}</p></div>
+                            <div><p><strong>Informações adicionais</strong></p><div class="modal-detail-value">${briefing.additional_info || 'Não informado'}</div></div>
+                            <div class="grid" style="margin-top: 1rem;">
+                                <div><p><strong>Prazo desejado</strong></p><div class="modal-detail-value">${briefing.project_deadline || 'Não informado'}</div></div>
+                                <div><p><strong>Orçamento disponível</strong></p><div class="modal-detail-value">${briefing.project_budget || 'Não informado'}</div></div>
                             </div>
                         </div>
                         
                         <div style="padding-top: 1.5rem; border-top: 1px solid #eee;">
                             <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Informações de contato</h4>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
-                                <div><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Nome</p><p style="margin-top: 0;">${briefing.contact_name || 'Não informado'}</p></div>
-                                <div><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">E-mail</p><p style="margin-top: 0;">${briefing.contact_email || 'Não informado'}</p></div>
-                                <div><p style="font-size: 0.875rem; color: #666; margin-bottom: 0.25rem;">Telefone</p><p style="margin-top: 0;">${briefing.contact_phone || 'Não informado'}</p></div>
+                            <div class="grid">
+                                <div><p><strong>Nome</strong></p><div class="modal-detail-value">${briefing.contact_name || 'Não informado'}</div></div>
+                                <div><p><strong>E-mail</strong></p><div class="modal-detail-value">${briefing.contact_email || 'Não informado'}</div></div>
+                                <div><p><strong>Telefone</strong></p><div class="modal-detail-value">${briefing.contact_phone || 'Não informado'}</div></div>
                             </div>
                         </div>
 
@@ -1122,10 +1164,14 @@
                         </div>
                         ` : ''}
                     `;
+                    
+                    // --- NOVO CÓDIGO AQUI: Ajusta textareas após o conteúdo ser carregado ---
+                    autoResizeTextareas();
+                    // --- FIM DO NOVO CÓDIGO ---
 
                     // Adiciona manipuladores de eventos para atualização de status e notas
                     if (currentAdminUser) {
-                        document.getElementById('update-status-btn').addEventListener('click', async function () {
+                        document.getElementById('update-status-btn').addEventListener('click', async function() {
                             const newStatus = document.getElementById('status-select').value;
                             try {
                                 await db.collection('briefings').doc(briefingId).update({
@@ -1144,7 +1190,7 @@
                             }
                         });
 
-                        document.getElementById('save-notes-btn').addEventListener('click', async function () {
+                        document.getElementById('save-notes-btn').addEventListener('click', async function() {
                             const notes = document.getElementById('notes-input').value;
                             try {
                                 await db.collection('briefings').doc(briefingId).update({
@@ -1203,19 +1249,19 @@
         // Configura os manipuladores de eventos para os links de navegação
         document.addEventListener('DOMContentLoaded', () => {
             // Link Home no logo
-            document.getElementById('home-link').addEventListener('click', function (e) {
+            document.getElementById('home-link').addEventListener('click', function(e) {
                 e.preventDefault(); // IMPEDE A NAVEGAÇÃO
                 loadBriefingForm();
             });
 
             // Link Home no menu
-            document.getElementById('nav-home-link').addEventListener('click', function (e) {
+            document.getElementById('nav-home-link').addEventListener('click', function(e) {
                 e.preventDefault(); // IMPEDE A NAVEGAÇÃO
                 loadBriefingForm();
             });
 
             // Link Admin no menu
-            document.getElementById('nav-admin-link').addEventListener('click', function (e) {
+            document.getElementById('nav-admin-link').addEventListener('click', function(e) {
                 e.preventDefault(); // IMPEDE A NAVEGAÇÃO
                 if (currentAdminUser) {
                     // Se o admin já estiver logado, vai direto para o dashboard
@@ -1229,5 +1275,4 @@
 
     </script>
 </body>
-
 </html>
