@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agência Elevare | Marketing Criativo com Resultados</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#efe2d3',
+                        secondary: '#3a8b99',
+                        tertiary: '#55aebe',
+                        accent: '#74634f',
+                        lightAccent: '#f6eee7',
+                        darkAccent: '#5a4d3d'
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        display: ['Syncopate', 'sans-serif'],
+                        merriweather: ['Merriweather', 'serif'],
+                    },
+                    backdropBlur: {
+                        xs: '2px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            background: linear-gradient(135deg, #efe2d3, #f6eee7);
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        .glass-nav {
+            background: rgba(239, 226, 211, 0.8);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            top: 40px;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(58, 139, 153, 0.5),
+                0 0 30px rgba(58, 139, 153, 0.3),
+                0 0 45px rgba(58, 139, 153, 0.1);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(58, 139, 153, 0.5),
+                0 0 20px rgba(58, 139, 153, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3a8b99, #55aebe);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(270deg, #3a8b99, #55aebe, #3a8b99);
+            background-size: 200% 200%;
+            animation: borderGlow 3s linear infinite;
+            z-index: -1;
+            border-radius: 0.6rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 20px -5px rgba(58, 139, 153, 0.4);
+        }
+
+        @keyframes borderGlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .service-card {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            perspective: 1000px;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.1),
+                -20px -20px 60px rgba(255, 255, 255, 0.8);
+        }
+
+        .floating {
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .logo-animation {
+            opacity: 0;
+            transform: scale(0.8);
+            animation: logoReveal 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes logoReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollBounce 2s infinite;
+        }
+
+        @keyframes scrollBounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #3a8b99;
+            animation: typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: #3a8b99
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Banner de Urgência -->
+    <div class="bg-gradient-to-r from-secondary to-tertiary text-white text-center py-2 px-4 fixed w-full top-0 z-40">
+        <p class="text-sm font-medium">
+            <i class="fas fa-fire text-orange-300 mr-2"></i>
+            <strong>🔥 ÚLTIMAS 3 VAGAS COM 50% DE DESCONTO:</strong> Orçamento gratuito + análise completa do seu projeto
+            <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold ml-2" id="vagas-restantes">3 vagas restantes</span>
+            <a href="https://wa.me/5581991143275" class="underline hover:no-underline ml-2 font-bold">GARANTIR MINHA VAGA</a>
+        </p>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="glass-nav py-2 px-6 md:px-12 transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center logo-animation">
+                <div class="relative w-16 h-16 flex items-center">
+                    <img src="LOGO ELEVARE.png" alt="Logo Elevare" class="w-full h-full object-contain rounded-full">
+                </div>
+                <span class="text-accent font-serif text-2xl font-bold ml-3">ELEVARE</span>
+            </a>
+
+            <div class="hidden md:flex space-x-8">
+                <a href="#sobre"
+                    class="text-accent hover:text-secondary transition-all hover:scale-105 hover:text-glow">Sobre</a>
+                <a href="#servicos"
+                    class="text-accent hover:text-secondary transition-all hover:scale-105 hover:text-glow">Serviços</a>
+                <a href="#portfolio"
+                    class="text-accent hover:text-secondary transition-all hover:scale-105 hover:text-glow">Portfólio</a>
+                <a href="#depoimentos"
+                    class="text-accent hover:text-secondary transition-all hover:scale-105 hover:text-glow">Depoimentos</a>
+                <a href="#contato"
+                    class="text-accent hover:text-secondary transition-all hover:scale-105 hover:text-glow">Contato</a>
+                <a href="branding.html"
+                    class="text-accent hover:text-secondary transition-all hover:scale-105 hover:text-glow">Briefing</a>
+
+            </div>
+
+            <button class="md:hidden text-accent text-2xl hover:text-secondary transition-all" id="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass-nav py-4 px-6 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#sobre" class="text-accent hover:text-secondary transition-all hover:scale-105">Sobre</a>
+                <a href="#servicos" class="text-accent hover:text-secondary transition-all hover:scale-105">Serviços</a>
+                <a href="#portfolio"
+                    class="text-accent hover:text-secondary transition-all hover:scale-105">Portfólio</a>
+                <a href="#depoimentos"
+                    class="text-accent hover:text-secondary transition-all hover:scale-105">Depoimentos</a>
+                <a href="#contato" class="text-accent hover:text-secondary transition-all hover:scale-105">Contato</a>
+                <a href="branding.html"
+                    class="text-accent hover:text-secondary transition-all hover:scale-105 hover:text-glow">Briefing</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-32 pb-16 px-6 md:px-12" style="padding-top: 120px;">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 reveal">
+                    <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-accent leading-tight mb-6">
+                        Aumente suas vendas em até 200% com estratégias que realmente funcionam
+                    </h1>
+                    <p class="text-lg md:text-xl text-accent/80 mb-8 max-w-lg">
+                        <strong>Site + Instagram + Tráfego Pago</strong> que transformam visitantes em clientes. 
+                        <span class="text-secondary font-bold">Resultados comprovados e mensuráveis.</span>
+                    </p>
+                    <a href="#contato" class="btn-primary">
+                        Quero Aumentar Minhas Vendas
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    
+                    <!-- Diferenciais -->
+                    <div class="mt-6 flex items-center justify-center gap-4 text-sm text-accent/70">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-shield-alt text-green-500"></i>
+                            <span>Suporte completo</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-clock text-blue-500"></i>
+                            <span>Resultados rápidos</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-users text-purple-500"></i>
+                            <span>+50 clientes satisfeitos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 mt-12 md:mt-0" data-gsap="fade-left">
+                    <div class="relative">
+                        <div class="absolute -top-6 -left-6 w-24 h-24 bg-tertiary/20 rounded-full floating"></div>
+                        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-secondary/20 rounded-full floating"
+                            style="animation-delay: 1s;"></div>
+
+                        <div class="glass-card rounded-2xl p-8 neon-glow">
+                            <img src="Foto principal header.png" alt="Descrição da imagem"
+                                class="w-full h-auto rounded-2xl object-cover">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="scroll-indicator">
+                <div class="w-6 h-10 border-2 border-secondary rounded-full flex justify-center">
+                    <div class="w-1 h-3 bg-secondary rounded-full mt-2 animate-bounce"></div>
+                </div>
+            </div>
+    </section>
+     <!-- Portfolio Section -->
+     <section id="portfolio" class="py-20 px-6 md:px-12 bg-lightAccent">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-accent mb-4">Resultados que falam por nós</h2>
+                <p class="text-accent/80 max-w-2xl mx-auto mb-8">
+                    Conheça alguns dos projetos que transformaram a presença digital de nossos clientes e geraram
+                    resultados extraordinários.
+                </p>
+                
+                <!-- Prova Social -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="glass-card p-4 rounded-xl">
+                        <div class="text-3xl font-bold text-secondary mb-2">+50</div>
+                        <div class="text-accent/80 text-sm">Projetos Entregues</div>
+                        <div class="text-accent/60 text-xs mt-1">100% de sucesso</div>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl">
+                        <div class="text-3xl font-bold text-secondary mb-2">+200%</div>
+                        <div class="text-accent/80 text-sm">Aumento Médio</div>
+                        <div class="text-accent/60 text-xs mt-1">nas vendas</div>
+                    </div>
+                        <div class="glass-card p-4 rounded-xl">
+                            <div class="text-3xl font-bold text-secondary mb-2">100%</div>
+                            <div class="text-accent/80 text-sm">Personalizado</div>
+                            <div class="text-accent/60 text-xs mt-1">para seu negócio</div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item shadow-lg reveal" style="transition-delay: 0.1s;">
+                    <img src="Logo Feijoada.png" alt="Floricultura Santa Maria" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay p-6 text-center">
+                        <h3 class="font-serif text-xl font-bold text-secondary mb-2">Rebranding Completo</h3>
+                        <p class="text-secondary/90 mb-4">Criação de site, nova identidade visual e Organização do
+                            instagram.
+                            Resultado: aumento de 78% nos pedidos online.</p>
+                        <a href="links-feijoada.html" target="_blank"
+                            class="text-secondary border border-secondary px-4 py-2 rounded-full hover:bg-secondary hover:text-white transition-all">
+                            Ver detalhes
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item shadow-lg reveal" style="transition-delay: 0.2s;">
+                    <img src="Logo Santa Maria.jpg" alt="Floricultura Santa Maria" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay p-6 text-center">
+                        <h3 class="font-serif text-xl font-bold text-secondary mb-2">Floricultura Renovada</h3>
+                        <p class="text-secondary/80 mb-4">Criação de site e novo Instagram.
+                            Resultado:
+                            aumento de 80% nos pedidos online.</p>
+                        <a href="links-floricultura.html" target="_blank"
+                            class="text-secondary border border-secondary px-4 py-2 rounded-full hover:bg-secondary hover:text-white transition-all">
+                            Ver detalhes
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item shadow-lg reveal" style="transition-delay: 0.3s;">
+                    <img src="Logo Soraia.jpg" alt="Doceria Soraia Senna" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay p-6 text-center">
+                        <h3 class="font-serif text-xl font-bold text-secondary mb-2">Instagram Renovado</h3>
+                        <p class="text-secondary/80 mb-4">Renovação completa do Instagram da doceria.
+                            Resultado: aumento de 120% no engajamento e 95% mais seguidores.</p>
+                        <a href="links-soraia.html" target="_blank"
+                            class="text-secondary border border-secondary px-4 py-2 rounded-full hover:bg-secondary hover:text-white transition-all">
+                            Ver detalhes
+                        </a>
+                    </div>
+                </div>
+
+
+    </section>
+
+   
+
+    <!-- Serviços Section -->
+    <section id="servicos" class="py-20 px-6 md:px-12 relative">
+        <div class="container mx-auto">
+            <div class="text-center mb-16" data-gsap="fade-down">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-accent mb-4">NOSSOS SERVIÇOS</h2>
+                <p class="text-accent/80 max-w-2xl mx-auto">
+                    Oferecemos soluções completas de marketing digital para impulsionar o seu negócio e alcançar
+                    resultados extraordinários.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Serviço 1 -->
+                <div class="service-card glass-card p-8 rounded-2xl" data-gsap="fade-up" data-gsap-delay="0.1">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center mb-6 transform rotate-12 neon-glow">
+                        <i class="fas fa-hashtag text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-secondary mb-4">Social Media</h3>
+                    <p class="text-accent/80 mb-6">
+                        Estratégias de conteúdo e gestão de redes sociais para aumentar o engajamento e construir uma
+                        comunidade fiel à sua marca.
+                    </p>
+                    <a href="#"
+                        class="group text-secondary font-medium flex items-center gap-2 transition-all hover:gap-4 saiba-mais-servico"
+                        data-servico="social-media">
+                        Saiba mais
+                        <i class="fas fa-arrow-right transition-transform group-hover:translate-x-2"></i>
+                    </a>
+                </div>
+
+                <!-- Serviço 2 -->
+                <div class="service-card glass-card p-8 rounded-2xl" data-gsap="fade-up" data-gsap-delay="0.2">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center mb-6 transform -rotate-12 neon-glow">
+                        <i class="fas fa-chart-line text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-secondary mb-4">Tráfego Pago</h3>
+                    <p class="text-accent/80 mb-6">
+                        Campanhas otimizadas para Google Ads, Facebook Ads e Instagram Ads que maximizam seu ROI e geram
+                        leads qualificados.
+                    </p>
+                    <a href="#"
+                        class="group text-secondary font-medium flex items-center gap-2 transition-all hover:gap-4 saiba-mais-servico"
+                        data-servico="trafego">
+                        Saiba mais
+                        <i class="fas fa-arrow-right transition-transform group-hover:translate-x-2"></i>
+                    </a>
+                </div>
+
+                <!-- Serviço 3 -->
+                <div class="service-card glass-card p-8 rounded-2xl" data-gsap="fade-up" data-gsap-delay="0.3">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center mb-6 transform rotate-45 neon-glow">
+                        <i class="fas fa-paint-brush text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-secondary mb-4">Branding</h3>
+                    <p class="text-accent/80 mb-6">
+                        Desenvolvimento de identidade visual e posicionamento de marca que conecta emocionalmente com
+                        seu público-alvo.
+                    </p>
+                    <a href="#"
+                        class="group text-secondary font-medium flex items-center gap-2 transition-all hover:gap-4 saiba-mais-servico"
+                        data-servico="branding">
+                        Saiba mais
+                        <i class="fas fa-arrow-right transition-transform group-hover:translate-x-2"></i>
+                    </a>
+                </div>
+
+                <!-- Serviço 4 -->
+                <div class="service-card glass-card p-8 rounded-2xl" data-gsap="fade-up" data-gsap-delay="0.4">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center mb-6 transform -rotate-45 neon-glow">
+                        <i class="fas fa-laptop-code text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-secondary mb-4">Sites</h3>
+                    <p class="text-accent/80 mb-6">
+                        Criação de websites responsivos, otimizados para conversão e com experiência do usuário
+                        excepcional.
+                    </p>
+                    <a href="#"
+                        class="group text-secondary font-medium flex items-center gap-2 transition-all hover:gap-4 saiba-mais-servico"
+                        data-servico="sites">
+                        Saiba mais
+                        <i class="fas fa-arrow-right transition-transform group-hover:translate-x-2"></i>
+                    </a>
+                </div>
+
+                <!-- Serviço 5 -->
+                <div class="service-card glass-card p-8 rounded-2xl" data-gsap="fade-up" data-gsap-delay="0.5">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center mb-6 transform rotate-180 neon-glow">
+                        <i class="fas fa-search text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-secondary mb-4">SEO</h3>
+                    <p class="text-accent/80 mb-6">
+                        Otimização para mecanismos de busca que aumenta sua visibilidade orgânica e atrai tráfego
+                        qualificado.
+                    </p>
+                    <a href="#"
+                        class="group text-secondary font-medium flex items-center gap-2 transition-all hover:gap-4 saiba-mais-servico"
+                        data-servico="seo">
+                        Saiba mais
+                        <i class="fas fa-arrow-right transition-transform group-hover:translate-x-2"></i>
+                    </a>
+                </div>
+
+                <!-- Serviço 6 -->
+                <div class="service-card glass-card p-8 rounded-2xl" data-gsap="fade-up" data-gsap-delay="0.6">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center mb-6 transform rotate-90 neon-glow">
+                        <i class="fas fa-bullhorn text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-secondary mb-4">Email Marketing</h3>
+                    <p class="text-accent/80 mb-6">
+                        Estratégias de nutrição e conversão através de campanhas de email personalizadas e segmentadas.
+                    </p>
+                    <a href="#"
+                        class="group text-secondary font-medium flex items-center gap-2 transition-all hover:gap-4 saiba-mais-servico"
+                        data-servico="email">
+                        Saiba mais
+                        <i class="fas fa-arrow-right transition-transform group-hover:translate-x-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div
+            class="absolute top-0 left-0 w-64 h-64 bg-gradient-to-r from-secondary/10 to-transparent rounded-full blur-3xl">
+        </div>
+        <div
+            class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-l from-tertiary/10 to-transparent rounded-full blur-3xl">
+        </div>
+    </section>
+
+     <!-- Sobre Section -->
+     <section id="sobre" class="py-20 px-6 md:px-12 bg-lightAccent">
+        <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-start gap-12">
+            <!-- Cards Visuais -->
+            <div class="md:w-2/5 flex flex-col md:flex-row gap-8">
+                <!-- Card Manuella -->
+                <div class="rounded-2xl overflow-hidden shadow-lg bg-white p-4 md:w-1/2">
+                    <img src="Manuella Celular.jpeg" alt="Manuella Estevam" class="w-full object-cover rounded-2xl">
+                    <div class="mt-4 text-center">
+                        <h3 class="font-serif text-xl font-bold text-accent">Manuella Estevam</h3>
+                        <p class="text-tertiary mb-2">CEO & Designer</p>
+                        <p class="text-accent/80 text-sm px-4">Líder criativa com o objetivo de trazer soluções inovadoras, transformando ideias em soluções reais e mensuráveis.</p>
+                    </div>
+                </div>
+                <!-- Card Cleiton -->
+                <div class="rounded-2xl overflow-hidden shadow-lg bg-white p-4 md:w-1/2">
+                    <img src="Douglas Celular.jpeg" alt="Cleiton Miranda" class="w-full object-cover rounded-2xl">
+                    <div class="mt-4 text-center">
+                        <h3 class="font-serif text-xl font-bold text-accent">Cleiton Miranda</h3>
+                        <p class="text-tertiary mb-2">CFO & Programador</p>
+                        <p class="text-accent/80 text-sm px-4">Desenvolvedor versátil, conecta design e tecnologia para criar soluções digitais que geram resultados reais.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Texto Sobre -->
+            <div class="md:w-3/5 flex flex-col justify-start">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-accent mb-6">Sobre a Elevare</h2>
+                <p class="text-accent/80 mb-6">
+                    A Elevare surgiu com a missão de impulsionar negócios por meio de estratégias
+                    personalizadas e criativas, que geram resultados reais e mensuráveis. Nossa abordagem combina criatividade,
+                    análise de dados e planejamento estratégico para criar soluções que vão além de atrair público — nosso foco é
+                    converter e fortalecer sua marca. Acreditamos que cada negócio é único e merece uma estratégia feita sob medida,
+                    alinhada à sua essência e objetivos.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- Depoimentos Section -->
+    <section id="depoimentos" class="py-20 px-6 md:px-12 bg-primary">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-accent mb-4">O que nossos clientes dizem</h2>
+                <p class="text-accent/80 max-w-2xl mx-auto">
+                    Veja como nossos serviços transformaram os negócios de nossos clientes e superaram suas
+                    expectativas.
+                </p>
+            </div>
+
+            <div class="relative">
+                <div class="carousel flex overflow-x-auto gap-6 pb-8 hide-scrollbar">
+                    <!-- Depoimento 1 -->
+                    <div class="carousel-item flex-shrink-0 w-full md:w-1/2 lg:w-1/3">
+                        <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                                    <img src="Logo Feijoada.png" alt="Foto de Dayse Miranda"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h3 class="font-serif text-xl font-bold text-accent">Dayse Miranda</h3>
+                                    <p class="text-tertiary">Dona, Feijoada da Dayse</p>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <div class="flex text-yellow-400 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="text-accent/80 italic">
+                                    "Sem palavras para agradecer à equipe da agenciaelevarebr! Vocês conseguiram
+                                    transformar nossas ideias em uma identidade visual linda, criaram um site funcional
+                                    e com a nossa cara, e ainda deram um show no nosso Instagram! Um trabalho completo,
+                                    feito com muito talento e profissionalismo. Super recomendo!."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Depoimento 2 -->
+                    <div class="carousel-item flex-shrink-0 w-full md:w-1/2 lg:w-1/3">
+                        <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                                    <img src="IMG_2201.jpg" alt="Foto de Jackson Silva">
+                                </div>
+                                <div>
+                                    <h3 class="font-serif text-xl font-bold text-accent">Jackson Silva</h3>
+                                    <p class="text-tertiary">Dono, Floricultura Santa Maria</p>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <div class="flex text-yellow-400 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="text-accent/80 italic">
+                                    "Ter o site desenvolvido pela agência elevare foi um divisor de águas para nossa
+                                    floricultura. Após o lançamento, nossas vendas online aumentaram mais de 80% e
+                                    conseguimos alcançar muito mais clientes. O site ficou lindo, funcional e tem sido
+                                    essencial para o nosso crescimento!"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Depoimento 3 -->
+                    <div class="carousel-item flex-shrink-0 w-full md:w-1/2 lg:w-1/3">
+                        <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                                    <img src="Logo Soraia.jpg" alt="Foto de Soraia Senna">
+                                </div>
+                                <div>
+                                    <h3 class="font-serif text-xl font-bold text-accent">Soraia Senna</h3>
+                                    <p class="text-tertiary">Dona, Doceria Soraia Senna</p>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <div class="flex text-yellow-400 mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="text-accent/80 italic">
+                                    "A transformação do meu Instagram foi incrível! Em poucos meses, aumentei 120% no engajamento e 95% nos seguidores. As vendas explodiram! A equipe da Elevare entendeu perfeitamente o que eu precisava e entregou muito mais do que esperava."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex justify-center mt-8 gap-2">
+                    <button class="w-3 h-3 rounded-full bg-accent/30 carousel-dot active" data-index="0"></button>
+                    <button class="w-3 h-3 rounded-full bg-accent/30 carousel-dot" data-index="1"></button>
+                    <button class="w-3 h-3 rounded-full bg-accent/30 carousel-dot" data-index="2"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objeções Comuns -->
+    <section class="py-20 px-6 md:px-12 bg-lightAccent">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-accent mb-4">Dúvidas Frequentes</h2>
+                <p class="text-accent/80 max-w-2xl mx-auto">Tire suas principais dúvidas sobre nossos serviços</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="font-bold text-accent mb-3">❓ "Quanto tempo demora para ver resultados?"</h3>
+                    <p class="text-accent/80 text-sm">Em 30 dias você já vê aumento nas vendas. Garantimos resultados através de estratégias comprovadas.</p>
+                </div>
+                
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="font-bold text-accent mb-3">❓ "E se eu não gostar do resultado?"</h3>
+                    <p class="text-accent/80 text-sm">Trabalhamos com você para ajustar até ficar perfeito. Nossa prioridade é sua satisfação total.</p>
+                </div>
+                
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="font-bold text-accent mb-3">❓ "Preciso ter conhecimento técnico?"</h3>
+                    <p class="text-accent/80 text-sm">Não! Fazemos tudo para você. Você só precisa aprovar e acompanhar os resultados.</p>
+                </div>
+                
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="font-bold text-accent mb-3">❓ "Qual o investimento necessário?"</h3>
+                    <p class="text-accent/80 text-sm">Criamos pacotes personalizados para cada cliente, considerando seu orçamento e objetivos. Agende uma conversa para receber uma proposta sob medida para seu negócio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6 md:px-12 bg-secondary">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-2/3 mb-10 md:mb-0 reveal">
+                    <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+                        Últimas 3 vagas com 50% de desconto - Garanta a sua!
+                    </h2>
+                    <p class="text-white/90 text-lg max-w-xl">
+                        <strong>🔥 OFERTA LIMITADA:</strong> Pacotes personalizados com 50% de desconto
+                        <br><br>
+                        <span class="text-yellow-300 font-bold">Site + Instagram + Tráfego Pago</span>
+                        <br>
+                        <span class="text-green-300 font-bold">Proposta personalizada para seu negócio</span>
+                    </p>
+                </div>
+
+                <div class="reveal" style="transition-delay: 0.3s;">
+                    <a href="https://wa.me/5581991143275" class="btn-primary text-lg px-8 py-4">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        GARANTIR MINHA VAGA
+                    </a>
+                    
+                    <p class="text-white/70 text-sm mt-4 text-center">
+                        <i class="fas fa-percentage mr-2"></i>
+                        Desconto válido apenas para as próximas 3 vagas
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="py-20 px-6 md:px-12 bg-lightAccent relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div
+            class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-secondary/10 to-transparent rounded-full blur-3xl">
+        </div>
+        <div
+            class="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-tertiary/10 to-transparent rounded-full blur-3xl">
+        </div>
+
+        <div class="container mx-auto relative">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-accent mb-6">Vamos conversar?</h2>
+                <p class="text-accent/80 text-lg max-w-2xl mx-auto">
+                    Estamos ansiosos para entender seu projeto e mostrar como podemos impulsionar seus resultados
+                    juntos.
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12 items-stretch">
+                <!-- Contact Info Card -->
+                <div class="lg:w-1/3 reveal">
+                    <div
+                        class="glass-card h-full p-8 rounded-3xl border border-white/20 hover:border-secondary/30 transition-all duration-300 space-y-10">
+
+                        <!-- Contatos -->
+                        <div class="space-y-8">
+                            <!-- Instagram -->
+                            <div class="flex items-center gap-6 group">
+                                <a href="https://www.instagram.com/agenciaelevarebr/" target="_blank"
+                                    class="w-14 h-14 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+                                    <i class="fab fa-instagram text-white text-xl"></i>
+                                </a>
+                                <div>
+                                    <h3 class="font-serif font-bold text-lg text-accent mb-1">Instagram</h3>
+                                    <a href="https://www.instagram.com/agenciaelevarebr/" target="_blank"
+                                        class="text-accent/80">@agenciaelevarebr</a>
+                                </div>
+                            </div>
+
+                            <!-- WhatsApp -->
+                            <div class="flex items-center gap-6 group">
+                                <a href="https://wa.me/+5581991143275" target="_blank"
+                                    class="w-14 h-14 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+                                    <i class="fas fa-phone-alt text-white text-xl"></i>
+                                </a>
+                                <div>
+                                    <h3 class="font-serif font-bold text-lg text-accent mb-1">WhatsApp</h3>
+                                    <a href="https://wa.me/+5581991143275" target="_blank"
+                                        class="text-accent/80 hover:text-secondary transition-colors">(81)
+                                        99114-3275</a>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="flex items-center gap-6 group">
+                                <a href="mailto:agenciaelevarebr@gmail.com"
+                                    class="w-14 h-14 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+                                    <i class="fas fa-envelope text-white text-xl"></i>
+                                </a>
+                                <div>
+                                    <h3 class="font-serif font-bold text-lg text-accent mb-1">Email</h3>
+                                    <a href="mailto:agenciaelevarebr@gmail.com"
+                                        class="text-accent/80 hover:text-secondary transition-colors">agenciaelevarebr@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Frase Institucional -->
+                        <div class="border-t border-white/10 pt-6 space-y-2">
+                            <h3 class="font-serif font-bold text-accent text-lg flex items-center gap-2">
+                                <i class="fas fa-lightbulb text-secondary"></i>
+                                Elevando ideias, impulsionando marcas
+                            </h3>
+                            <p class="text-accent/80 leading-relaxed">
+                                Transformamos sua presença digital com criatividade, estratégia e resultados.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- Contact Form -->
+                <div class="lg:w-2/3 reveal" style="transition-delay: 0.3s;">
+                    <form id="contato-form"
+                        class="glass-card p-8 rounded-3xl border border-white/20 hover:border-secondary/30 transition-all duration-300">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="form-group">
+                                <label for="name" class="block text-accent font-medium mb-2">Nome completo</label>
+                                <div class="relative">
+                                    <input type="text" id="name"
+                                        class="w-full px-5 py-4 bg-white/80 border-2 border-transparent rounded-xl focus:border-secondary focus:outline-none transition-all"
+                                        placeholder="Digite seu nome">
+                                    <i class="fas fa-user absolute right-4 top-1/2 -translate-y-1/2 text-accent/40"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="block text-accent font-medium mb-2">Email</label>
+                                <div class="relative">
+                                    <input type="email" id="email"
+                                        class="w-full px-5 py-4 bg-white/80 border-2 border-transparent rounded-xl focus:border-secondary focus:outline-none transition-all"
+                                        placeholder="seu@email.com">
+                                    <i
+                                        class="fas fa-envelope absolute right-4 top-1/2 -translate-y-1/2 text-accent/40"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="form-group">
+                                <label for="phone" class="block text-accent font-medium mb-2">WhatsApp</label>
+                                <div class="relative">
+                                    <input type="tel" id="phone"
+                                        class="w-full px-5 py-4 bg-white/80 border-2 border-transparent rounded-xl focus:border-secondary focus:outline-none transition-all"
+                                        placeholder="(00) 00000-0000">
+                                    <i
+                                        class="fab fa-whatsapp absolute right-4 top-1/2 -translate-y-1/2 text-accent/40"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="service" class="block text-accent font-medium mb-2">Serviço de
+                                    interesse</label>
+                                <div class="relative">
+                                    <select id="service"
+                                        class="w-full px-5 py-4 bg-white/80 border-2 border-transparent rounded-xl focus:border-secondary focus:outline-none transition-all appearance-none">
+                                        <option value="">Selecione um serviço</option>
+                                        <option value="social-media">Social Media</option>
+                                        <option value="trafego">Tráfego Pago</option>
+                                        <option value="branding">Branding</option>
+                                        <option value="sites">Sites</option>
+                                        <option value="seo">SEO</option>
+                                    </select>
+                                    <i
+                                        class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-accent/40"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-8">
+                            <label for="message" class="block text-accent font-medium mb-2">Mensagem</label>
+                            <div class="relative">
+                                <textarea id="message" rows="5"
+                                    class="w-full px-5 py-4 bg-white/80 border-2 border-transparent rounded-xl focus:border-secondary focus:outline-none transition-all resize-none"
+                                    placeholder="Conte-nos sobre seu projeto..."></textarea>
+                                <i class="fas fa-pencil-alt absolute right-4 top-6 text-accent/40"></i>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="enviar-whatsapp"
+                            class="btn-primary w-full justify-center py-4 text-lg group">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                            Enviar Mensagem
+                            <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                        </button>
+                        
+                        <p class="text-center text-accent/60 text-sm mt-4">
+                            <i class="fas fa-shield-alt text-green-500 mr-2"></i>
+                            Seus dados estão seguros conosco. Resposta em até 2 horas.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 bg-darkAccent text-white">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between mb-12">
+                <div class="mb-8 md:mb-0">
+                    <a href="#" class="flex items-center mb-6">
+                        <img src="LOGO ELEVARE.png" alt="Logo Elevare" class="w-10 h-10 mr-2">
+                        <span class="text-white font-serif text-2xl font-bold">Elevare</span>
+                    </a>
+                    <p class="text-white/80 max-w-xs">
+                        Transformamos negócios através de estratégias de marketing criativas e orientadas a resultados.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="font-serif font-bold text-lg mb-4">Links Rápidos</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-white/80 hover:text-tertiary transition-colors">Home</a></li>
+                            <li><a href="#sobre" class="text-white/80 hover:text-tertiary transition-colors">Sobre</a>
+                            </li>
+                            <li><a href="#servicos"
+                                    class="text-white/80 hover:text-tertiary transition-colors">Serviços</a></li>
+                            <li><a href="#portfolio"
+                                    class="text-white/80 hover:text-tertiary transition-colors">Portfólio</a></li>
+                            <li><a href="#contato"
+                                    class="text-white/80 hover:text-tertiary transition-colors">Contato</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-serif font-bold text-lg mb-4">Serviços</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-white/80 hover:text-tertiary transition-colors">Social Media</a>
+                            </li>
+                            <li><a href="#" class="text-white/80 hover:text-tertiary transition-colors">Tráfego Pago</a>
+                            </li>
+                            <li><a href="#" class="text-white/80 hover:text-tertiary transition-colors">Branding</a>
+                            </li>
+                            <li><a href="#" class="text-white/80 hover:text-tertiary transition-colors">Sites</a></li>
+                            <li><a href="#" class="text-white/80 hover:text-tertiary transition-colors">SEO</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-white/80 mb-4 md:mb-0">© 2025 Agência Elevare. Todos os direitos reservados.</p>
+                
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top"
+        class="fixed bottom-8 right-8 bg-secondary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Modal de Serviço -->
+    <div id="modal-servico" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 hidden">
+        <div
+            class="bg-white rounded-3xl p-8 max-w-lg w-full relative shadow-2xl border-2 border-secondary animate-fadeIn">
+            <button id="fechar-modal-servico"
+                class="absolute top-4 right-4 text-3xl text-secondary hover:text-tertiary transition-colors">&times;</button>
+            <div class="flex flex-col items-center text-center">
+                <div id="modal-icone"
+                    class="w-16 h-16 flex items-center justify-center rounded-full mb-4 bg-gradient-to-br from-secondary to-tertiary shadow-lg">
+                    <!-- Ícone dinâmico aqui -->
+                </div>
+                <h2 id="modal-titulo" class="text-3xl font-extrabold mb-3 text-secondary"></h2>
+                <p id="modal-descricao" class="text-accent/90 text-lg leading-relaxed"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize particles after the library loads
+        window.addEventListener('load', async () => {
+            try {
+                await tsParticles.load("particles-js", {
+                    particles: {
+                        number: {
+                            value: 80,
+                            density: {
+                                enable: true,
+                                value_area: 800
+                            }
+                        },
+                        color: {
+                            value: "#3a8b99"
+                        },
+                        shape: {
+                            type: "circle"
+                        },
+                        opacity: {
+                            value: 0.5,
+                            random: false,
+                            animation: {
+                                enable: true,
+                                speed: 1,
+                                minimumValue: 0.1,
+                                sync: false
+                            }
+                        },
+                        size: {
+                            value: 3,
+                            random: true,
+                            animation: {
+                                enable: true,
+                                speed: 2,
+                                minimumValue: 0.1,
+                                sync: false
+                            }
+                        },
+                        links: {
+                            enable: true,
+                            distance: 150,
+                            color: "#3a8b99",
+                            opacity: 0.4,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 2,
+                            direction: "none",
+                            random: false,
+                            straight: false,
+                            outModes: {
+                                default: "out"
+                            },
+                            attract: {
+                                enable: false,
+                                rotateX: 600,
+                                rotateY: 1200
+                            }
+                        }
+                    },
+                    interactivity: {
+                        detectsOn: "canvas",
+                        events: {
+                            onHover: {
+                                enable: true,
+                                mode: "grab"
+                            },
+                            onClick: {
+                                enable: true,
+                                mode: "push"
+                            },
+                            resize: true
+                        },
+                        modes: {
+                            grab: {
+                                distance: 140,
+                                links: {
+                                    opacity: 1
+                                }
+                            },
+                            push: {
+                                quantity: 4
+                            }
+                        }
+                    },
+                    detectRetina: true
+                });
+            } catch (error) {
+                console.warn("Particles initialization failed:", error);
+                // Remove the particles container if initialization fails
+                const particlesContainer = document.getElementById('particles-js');
+                if (particlesContainer) {
+                    particlesContainer.style.display = 'none';
+                }
+            }
+        });
+
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate elements with data-gsap attribute
+        document.querySelectorAll('[data-gsap]').forEach(element => {
+            const animation = element.getAttribute('data-gsap');
+            const delay = element.getAttribute('data-gsap-delay') || 0;
+
+            gsap.from(element, {
+                opacity: 0,
+                duration: 1,
+                delay: parseFloat(delay),
+                [animation.includes('left') ? 'x' : animation.includes('right') ? 'x' : 'y']: animation.includes('up') ? 50 : -50,
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+
+        // Navbar scroll effect - Hide on scroll down, show on scroll up
+        const navbar = document.querySelector('.glass-nav');
+        const backToTop = document.getElementById('back-to-top');
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        function updateNavbar() {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 50) {
+                navbar.style.backdropFilter = 'blur(12px)';
+                navbar.style.backgroundColor = 'rgba(239, 226, 211, 0.9)';
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                navbar.style.backdropFilter = 'blur(8px)';
+                navbar.style.backgroundColor = 'rgba(239, 226, 211, 0.8)';
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+
+            // Hide navbar when scrolling down, show when scrolling up
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scrolling down
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                navbar.style.transform = 'translateY(0)';
+            }
+
+            lastScrollY = currentScrollY;
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
+
+        // Garantir que o menu sempre fique fixo no topo
+        navbar.style.position = 'fixed';
+        navbar.style.top = '40px';
+        navbar.style.left = '0';
+        navbar.style.right = '0';
+        navbar.style.zIndex = '50';
+        navbar.style.transition = 'transform 0.3s ease-in-out';
+
+        // Mobile menu toggle with animation
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', function () {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.style.display = 'block';
+                gsap.from(mobileMenu, {
+                    opacity: 0,
+                    y: -20,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            } else {
+                gsap.to(mobileMenu, {
+                    opacity: 0,
+                    y: -20,
+                    duration: 0.3,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        mobileMenu.style.display = 'none';
+                    }
+                });
+            }
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                gsap.to(mobileMenu, {
+                    opacity: 0,
+                    y: -20,
+                    duration: 0.3,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Back to top button
+        backToTop.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        duration: 1,
+                        scrollTo: {
+                            y: target,
+                            offsetY: 100
+                        },
+                        ease: "power2.inOut"
+                    });
+                }
+            });
+        });
+
+        // Service card hover effect
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
+        document.getElementById('contato-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const nome = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('phone').value;
+            const servico = document.getElementById('service').value;
+            const mensagem = document.getElementById('message').value;
+            let texto = `Olá! Gostaria de conversar sobre:%0A%0A`;
+            texto += `*Nome:* ${nome}%0A`;
+            texto += `*Email:* ${email}%0A`;
+            texto += `*WhatsApp:* ${telefone}%0A`;
+            texto += `*Serviço de interesse:* ${servico}%0A`;
+            texto += `*Mensagem:* ${mensagem}`;
+            const numero = '5581991143275';
+            window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
+        });
+
+        const servicos = {
+            "social-media": {
+                titulo: "Social Media",
+                descricao: "Impulsione sua marca nas redes sociais com estratégias criativas, conteúdo relevante e interação constante. Nossa equipe cuida de todo o planejamento, criação de posts, stories, análise de métricas e relacionamento com o público para construir uma comunidade fiel e engajada.",
+                icone: '<i class="fas fa-hashtag text-white text-3xl"></i>'
+            },
+            "trafego": {
+                titulo: "Tráfego Pago",
+                descricao: "Aumente seus resultados com campanhas inteligentes no Google, Facebook e Instagram Ads. Segmentação precisa, anúncios criativos e otimização contínua para atrair clientes certos e maximizar seu retorno sobre investimento.",
+                icone: '<i class="fas fa-chart-line text-white text-3xl"></i>'
+            },
+            "branding": {
+                titulo: "Branding",
+                descricao: "Construa uma identidade visual única e memorável. Desenvolvemos logotipo, paleta de cores, tipografia e todo o universo visual da sua marca, transmitindo confiança, profissionalismo e conexão emocional com seu público.",
+                icone: '<i class="fas fa-paint-brush text-white text-3xl"></i>'
+            },
+            "sites": {
+                titulo: "Sites",
+                descricao: "Tenha um site moderno, responsivo e focado em conversão. Criamos experiências digitais que encantam, transmitem credibilidade e facilitam o contato com seus clientes, integrando design, performance e SEO.",
+                icone: '<i class="fas fa-laptop-code text-white text-3xl"></i>'
+            },
+            "seo": {
+                titulo: "SEO",
+                descricao: "Seja encontrado no Google! Otimizamos seu site para os mecanismos de busca, aumentando sua visibilidade, atraindo tráfego qualificado e gerando mais oportunidades de negócio de forma orgânica.",
+                icone: '<i class="fas fa-search text-white text-3xl"></i>'
+            },
+            "email": {
+                titulo: "Email Marketing",
+                descricao: "Conquiste, nutra e converta clientes com campanhas de email personalizadas. Segmentação inteligente, automação, design atrativo e análise de resultados para transformar leads em vendas.",
+                icone: '<i class="fas fa-bullhorn text-white text-3xl"></i>'
+            }
+        };
+        document.querySelectorAll('.saiba-mais-servico').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const servico = this.getAttribute('data-servico');
+                if (servicos[servico]) {
+                    document.getElementById('modal-titulo').textContent = servicos[servico].titulo;
+                    document.getElementById('modal-descricao').textContent = servicos[servico].descricao;
+                    document.getElementById('modal-icone').innerHTML = servicos[servico].icone;
+                    document.getElementById('modal-servico').classList.remove('hidden');
+                }
+            });
+        });
+        document.getElementById('fechar-modal-servico').addEventListener('click', function () {
+            document.getElementById('modal-servico').classList.add('hidden');
+        });
+        document.getElementById('modal-servico').addEventListener('click', function (e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+
+        // Contador de urgência dinâmico
+        let vagasRestantes = 3;
+        const contadorVagas = document.getElementById('vagas-restantes');
+        
+        // Simula diminuição de vagas ao longo do tempo
+        setInterval(() => {
+            if (vagasRestantes > 1 && Math.random() < 0.1) { // 10% de chance a cada 30 segundos
+                vagasRestantes--;
+                contadorVagas.textContent = `${vagasRestantes} vagas restantes`;
+                
+                if (vagasRestantes === 1) {
+                    contadorVagas.classList.add('animate-pulse');
+                    contadorVagas.textContent = 'ÚLTIMA VAGA!';
+                }
+            }
+        }, 30000); // Verifica a cada 30 segundos
+    </script>
+</body>
+
+</html>
