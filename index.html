@@ -82,13 +82,15 @@
             height: 300px;
         }
 
-        /* Efeito de flutuação sutil para os cards */
-        .floating-card {
-            animation: float 6s ease-in-out infinite;
-        }
+        /* Efeito de flutuação sutil para os cards - apenas desktop */
+        @media (min-width: 768px) {
+            .floating-card {
+                animation: float 6s ease-in-out infinite;
+            }
 
-        .floating-card:nth-child(2) {
-            animation-delay: 3s;
+            .floating-card:nth-child(2) {
+                animation-delay: 3s;
+            }
         }
 
         @keyframes float {
@@ -97,6 +99,98 @@
             }
             50% {
                 transform: translateY(-10px);
+            }
+        }
+
+        /* Desabilitar efeitos hover no mobile e tablet */
+        @media (max-width: 1024px) {
+            /* Desabilitar animação de pulsação no mobile */
+            .animate-pulse {
+                animation: none !important;
+            }
+            
+            /* Desabilitar efeitos hover nos cards */
+            .group:hover .group-hover\:opacity-100 {
+                opacity: 0 !important;
+            }
+            .group:hover .group-hover\:translate-y-0 {
+                transform: translateY(1rem) !important;
+            }
+            .group:hover .group-hover\:scale-110 {
+                transform: scale(1) !important;
+            }
+            .group:hover .group-hover\:scale-105 {
+                transform: scale(1) !important;
+            }
+            .group:hover .group-hover\:translate-x-2 {
+                transform: translateX(0) !important;
+            }
+            .group:hover .group-hover\:tracking-wide {
+                letter-spacing: normal !important;
+            }
+            .group:hover .group-hover\:animate-bounce {
+                animation: none !important;
+            }
+            .group:hover .group-hover\:text-secondary {
+                color: inherit !important;
+            }
+            .group:hover .group-hover\:opacity-20 {
+                opacity: 0 !important;
+            }
+            .group:hover .group-hover\:opacity-50 {
+                opacity: 0 !important;
+            }
+            .group:hover .group-hover\:shadow-3xl {
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+            }
+            .group:hover .group-hover\:-translate-y-3 {
+                transform: translateY(0) !important;
+            }
+            .group:hover .group-hover\:scale-110 {
+                transform: scale(1) !important;
+            }
+        }
+
+        /* Desabilitar efeitos hover no mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .group:hover .group-hover\:opacity-100 {
+                opacity: 0 !important;
+            }
+            .group:hover .group-hover\:translate-y-0 {
+                transform: translateY(1rem) !important;
+            }
+            .group:hover .group-hover\:scale-110 {
+                transform: scale(1) !important;
+            }
+            .group:hover .group-hover\:scale-105 {
+                transform: scale(1) !important;
+            }
+            .group:hover .group-hover\:translate-x-2 {
+                transform: translateX(0) !important;
+            }
+            .group:hover .group-hover\:tracking-wide {
+                letter-spacing: normal !important;
+            }
+            .group:hover .group-hover\:animate-bounce {
+                animation: none !important;
+            }
+            .group:hover .group-hover\:text-secondary {
+                color: inherit !important;
+            }
+            .group:hover .group-hover\:opacity-20 {
+                opacity: 0 !important;
+            }
+            .group:hover .group-hover\:opacity-50 {
+                opacity: 0 !important;
+            }
+            .group:hover .group-hover\:shadow-3xl {
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+            }
+            .group:hover .group-hover\:-translate-y-3 {
+                transform: translateY(0) !important;
+            }
+            .group:hover .group-hover\:scale-110 {
+                transform: scale(1) !important;
             }
         }
 
@@ -109,7 +203,14 @@
             left: 0;
             right: 0;
             z-index: 50;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        /* Ajuste para mobile - banner menor */
+        @media (max-width: 768px) {
+            .glass-nav {
+                top: 44px; /* Ajusta para o banner maior */
+            }
         }
 
         .neon-glow {
@@ -283,6 +384,30 @@
                 border-color: #3a8b99
             }
         }
+
+        /* Solução definitiva para mobile - desabilitar todos os efeitos hover */
+        @media (max-width: 1024px) {
+            .group:hover * {
+                transform: none !important;
+                opacity: inherit !important;
+                animation: none !important;
+                letter-spacing: inherit !important;
+                color: inherit !important;
+                box-shadow: inherit !important;
+            }
+            
+            /* Manter apenas as transições básicas */
+            .group * {
+                transition: none !important;
+            }
+            
+            /* Desabilitar animações no mobile */
+            .animate-pulse,
+            .animate-bounce,
+            .animate-ping {
+                animation: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -291,13 +416,18 @@
     <div id="particles-js"></div>
 
     <!-- Banner de Urgência -->
-    <div class="bg-gradient-to-r from-secondary to-tertiary text-white text-center py-2 px-4 fixed w-full top-0 z-40">
-        <p class="text-sm font-medium">
-            <i class="fas fa-fire text-orange-300 mr-2"></i>
-            <strong>🔥 ÚLTIMAS 3 VAGAS COM 50% DE DESCONTO:</strong> Orçamento gratuito + análise completa do seu projeto
-            <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold ml-2" id="vagas-restantes">3 vagas restantes</span>
-            <a href="https://wa.me/5581991143275" class="underline hover:no-underline ml-2 font-bold">GARANTIR MINHA VAGA</a>
-        </p>
+    <div class="bg-gradient-to-r from-secondary to-tertiary text-white text-center py-4 px-4 fixed w-full top-0 z-40">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <div class="flex items-center justify-center">
+                <i class="fas fa-fire text-orange-300 mr-2"></i>
+                <strong class="text-sm sm:text-base text-center">🔥 ÚLTIMAS 3 VAGAS COM 50% DE DESCONTO</strong>
+            </div>
+            <div class="flex items-center justify-center gap-3">
+                <span class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap min-w-fit" id="vagas-restantes">3 vagas restantes</span>
+                <a href="https://wa.me/5581991143275" class="underline hover:no-underline font-bold text-sm whitespace-nowrap">GARANTIR MINHA VAGA</a>
+            </div>
+        </div>
+        <p class="hidden md:block text-xs mt-2">Orçamento gratuito + análise completa do seu projeto</p>
     </div>
 
     <!-- Navbar -->
@@ -348,7 +478,14 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center pt-32 pb-16 px-6 md:px-12" style="padding-top: 120px;">
+    <section class="hero-section min-h-screen flex items-center pt-32 pb-16 px-6 md:px-12" style="padding-top: 120px;">
+        <style>
+            @media (max-width: 768px) {
+                .hero-section {
+                    padding-top: 120px !important;
+                }
+            }
+        </style>
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 reveal">
@@ -1212,6 +1349,12 @@
         // Initialize particles after the library loads
         window.addEventListener('load', async () => {
             try {
+                // Verificar se tsParticles está disponível
+                if (typeof tsParticles === 'undefined') {
+                    console.log('tsParticles não carregado, pulando inicialização');
+                    return;
+                }
+                
                 await tsParticles.load("particles-js", {
                     particles: {
                         number: {
@@ -1329,56 +1472,61 @@
             });
         });
 
-        // Navbar scroll effect - Hide on scroll down, show on scroll up
+        // Navbar simples - Esconde quando sai da seção Hero
         const navbar = document.querySelector('.glass-nav');
+        const heroSection = document.querySelector('.hero-section');
         const backToTop = document.getElementById('back-to-top');
-        let lastScrollY = window.scrollY;
-        let ticking = false;
 
         function updateNavbar() {
-            const currentScrollY = window.scrollY;
-            
-            if (currentScrollY > 50) {
+            if (!navbar || !heroSection) return;
+
+            const heroRect = heroSection.getBoundingClientRect();
+            const isInHero = heroRect.bottom > 0; // Se ainda está vendo a seção Hero
+
+            if (isInHero) {
+                // Dentro da seção Hero - Mostra navbar
+                navbar.style.transform = 'translateY(0)';
+                navbar.style.opacity = '1';
+            } else {
+                // Fora da seção Hero - Esconde navbar
+                navbar.style.transform = 'translateY(-100%)';
+                navbar.style.opacity = '0';
+            }
+
+            // Ajustar backdrop filter baseado na posição
+            if (window.scrollY > 50) {
                 navbar.style.backdropFilter = 'blur(12px)';
                 navbar.style.backgroundColor = 'rgba(239, 226, 211, 0.9)';
-                backToTop.classList.remove('opacity-0', 'invisible');
-                backToTop.classList.add('opacity-100', 'visible');
+                if (backToTop) {
+                    backToTop.classList.remove('opacity-0', 'invisible');
+                    backToTop.classList.add('opacity-100', 'visible');
+                }
             } else {
                 navbar.style.backdropFilter = 'blur(8px)';
                 navbar.style.backgroundColor = 'rgba(239, 226, 211, 0.8)';
-                backToTop.classList.add('opacity-0', 'invisible');
-                backToTop.classList.remove('opacity-100', 'visible');
-            }
-
-            // Hide navbar when scrolling down, show when scrolling up
-            if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                // Scrolling down
-                navbar.style.transform = 'translateY(-100%)';
-            } else {
-                // Scrolling up
-                navbar.style.transform = 'translateY(0)';
-            }
-
-            lastScrollY = currentScrollY;
-            ticking = false;
-        }
-
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateNavbar);
-                ticking = true;
+                if (backToTop) {
+                    backToTop.classList.add('opacity-0', 'invisible');
+                    backToTop.classList.remove('opacity-100', 'visible');
+                }
             }
         }
 
-        window.addEventListener('scroll', requestTick);
+        // Adicionar listener de scroll
+        window.addEventListener('scroll', updateNavbar);
+        
+        // Executar uma vez para definir estado inicial
+        updateNavbar();
 
         // Garantir que o menu sempre fique fixo no topo
-        navbar.style.position = 'fixed';
-        navbar.style.top = '40px';
-        navbar.style.left = '0';
-        navbar.style.right = '0';
-        navbar.style.zIndex = '50';
-        navbar.style.transition = 'transform 0.3s ease-in-out';
+        if (navbar) {
+            navbar.style.position = 'fixed';
+            navbar.style.top = '40px';
+            navbar.style.left = '0';
+            navbar.style.right = '0';
+            navbar.style.zIndex = '50';
+            navbar.style.transition = 'transform 0.3s ease-in-out';
+            navbar.style.transform = 'translateY(0)'; // Garantir posição inicial
+        }
 
         // Mobile menu toggle with animation
         const mobileMenuButton = document.getElementById('mobile-menu-button');
