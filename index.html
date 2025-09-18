@@ -58,6 +58,48 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
         }
 
+        /* Efeito Ripple para botões */
+        .ripple-button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .ripple-button:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Efeito de flutuação sutil para os cards */
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card:nth-child(2) {
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
         .glass-nav {
             background: rgba(239, 226, 211, 0.8);
             backdrop-filter: blur(8px);
@@ -580,37 +622,167 @@
      <!-- Sobre Section -->
      <section id="sobre" class="py-20 px-6 md:px-12 bg-lightAccent">
         <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-start gap-12">
-            <!-- Cards Visuais -->
+            <!-- Cards Visuais Modernos -->
             <div class="md:w-2/5 flex flex-col md:flex-row gap-8">
                 <!-- Card Manuella -->
-                <div class="rounded-2xl overflow-hidden shadow-lg bg-white p-4 md:w-1/2">
-                    <img src="Manuella Celular.jpeg" alt="Manuella Estevam" class="w-full object-cover rounded-2xl">
-                    <div class="mt-4 text-center">
-                        <h3 class="font-serif text-xl font-bold text-accent">Manuella Estevam</h3>
-                        <p class="text-tertiary mb-2">CEO & Designer</p>
-                        <p class="text-accent/80 text-sm px-4">Líder criativa com o objetivo de trazer soluções inovadoras, transformando ideias em soluções reais e mensuráveis.</p>
+                <div class="group relative bg-white/80 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-3 reveal border border-white/20 floating-card md:w-1/2">
+                    <!-- Efeito de gradiente de fundo -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <!-- Imagem com overlay -->
+                    <div class="relative overflow-hidden">
+                        <img src="Manuella Celular.jpeg" alt="Manuella Estevam" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <!-- Badge de especialidade -->
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                            <i class="fas fa-palette mr-1"></i>
+                            Design
+                        </div>
+                    </div>
+                    
+                    <!-- Conteúdo do card -->
+                    <div class="relative p-4">
+                        <div class="text-center mb-4">
+                            <h3 class="font-serif text-2xl font-bold text-accent mb-2 group-hover:text-secondary transition-colors duration-300">Manuella Estevam</h3>
+                            <p class="text-tertiary font-semibold text-lg mb-3">CEO & Designer</p>
+                            
+                            <!-- Especialidades -->
+                            <div class="flex flex-wrap justify-center gap-2 mb-4">
+                                <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">UI/UX Design</span>
+                                <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-medium">Branding</span>
+                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Estratégia</span>
+                            </div>
+                        </div>
+                        
+                        <p class="text-accent/80 text-sm leading-relaxed mb-4 text-center">Líder criativa com o objetivo de trazer soluções inovadoras, transformando ideias em soluções reais e mensuráveis.</p>
+                        
+                        <!-- Redes sociais e contato -->
+                        <div class="flex justify-center space-x-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                            <a href="#" class="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300">
+                                <i class="fab fa-instagram text-sm"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300">
+                                <i class="fab fa-linkedin text-sm"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300">
+                                <i class="fab fa-whatsapp text-sm"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
                 <!-- Card Cleiton -->
-                <div class="rounded-2xl overflow-hidden shadow-lg bg-white p-4 md:w-1/2">
-                    <img src="Douglas Celular.jpeg" alt="Cleiton Miranda" class="w-full object-cover rounded-2xl">
-                    <div class="mt-4 text-center">
-                        <h3 class="font-serif text-xl font-bold text-accent">Cleiton Miranda</h3>
-                        <p class="text-tertiary mb-2">CFO & Programador</p>
-                        <p class="text-accent/80 text-sm px-4">Desenvolvedor versátil, conecta design e tecnologia para criar soluções digitais que geram resultados reais.</p>
+                <div class="group relative bg-white/80 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-3 reveal border border-white/20 floating-card md:w-1/2" style="animation-delay: 0.2s;">
+                    <!-- Efeito de gradiente de fundo -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <!-- Imagem com overlay -->
+                    <div class="relative overflow-hidden">
+                        <img src="Douglas Celular.jpeg" alt="Cleiton Miranda" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <!-- Badge de especialidade -->
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                            <i class="fas fa-code mr-1"></i>
+                            Dev
+                        </div>
+                    </div>
+                    
+                    <!-- Conteúdo do card -->
+                    <div class="relative p-4">
+                        <div class="text-center mb-4">
+                            <h3 class="font-serif text-2xl font-bold text-accent mb-2 group-hover:text-secondary transition-colors duration-300">Cleiton Miranda</h3>
+                            <p class="text-tertiary font-semibold text-lg mb-3">CFO & Programador</p>
+                            
+                            <!-- Especialidades -->
+                            <div class="flex flex-wrap justify-center gap-2 mb-4">
+                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Full Stack</span>
+                                <span class="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-medium">Mobile</span>
+                                <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-medium">Finanças</span>
+                            </div>
+                        </div>
+                        
+                        <p class="text-accent/80 text-sm leading-relaxed mb-4 text-center">Desenvolvedor versátil, conecta design e tecnologia para criar soluções digitais que geram resultados reais.</p>
+                        
+                        <!-- Redes sociais e contato -->
+                        <div class="flex justify-center space-x-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                            <a href="#" class="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300">
+                                <i class="fab fa-github text-sm"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300">
+                                <i class="fab fa-linkedin text-sm"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300">
+                                <i class="fab fa-whatsapp text-sm"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- Texto Sobre -->
             <div class="md:w-3/5 flex flex-col justify-start">
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-accent mb-6">Sobre a Elevare</h2>
-                <p class="text-accent/80 mb-6">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-accent mb-4">Sobre a Elevare</h2>
+                <p class="text-accent/80 mb-6 text-lg leading-relaxed">
                     A Elevare surgiu com a missão de impulsionar negócios por meio de estratégias
                     personalizadas e criativas, que geram resultados reais e mensuráveis. Nossa abordagem combina criatividade,
                     análise de dados e planejamento estratégico para criar soluções que vão além de atrair público — nosso foco é
-                    converter e fortalecer sua marca. Acreditamos que cada negócio é único e merece uma estratégia feita sob medida,
+                    converter e fortalecer sua marca.
+                </p>
+                
+                <!-- Prova Social -->
+                <div class="grid grid-cols-3 gap-6 mb-8">
+                    <div class="text-center reveal" style="animation-delay: 0.1s;">
+                        <div class="text-3xl font-bold text-secondary mb-2 counter" data-target="50">0</div>
+                        <div class="text-sm text-accent/70 font-medium">Projetos Entregues</div>
+                    </div>
+                    <div class="text-center reveal" style="animation-delay: 0.2s;">
+                        <div class="text-3xl font-bold text-secondary mb-2 counter" data-target="200">0</div>
+                        <div class="text-sm text-accent/70 font-medium">Aumento em Vendas</div>
+                    </div>
+                    <div class="text-center reveal" style="animation-delay: 0.3s;">
+                        <div class="text-3xl font-bold text-secondary mb-2 counter" data-target="100">0</div>
+                        <div class="text-sm text-accent/70 font-medium">Clientes Satisfeitos</div>
+                    </div>
+                </div>
+
+                <p class="text-accent/80 mb-6 text-lg leading-relaxed">
+                    Acreditamos que cada negócio é único e merece uma estratégia feita sob medida,
                     alinhada à sua essência e objetivos.
                 </p>
+
+                <!-- CTA Aprimorado -->
+                <div class="mt-8 relative">
+                    <!-- Efeito de glow ao redor do botão -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-secondary to-tertiary rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                    
+                    <a href="#contato" class="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-secondary to-tertiary text-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 overflow-hidden animate-pulse hover:animate-none ripple-button">
+                        <!-- Efeito de brilho animado -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 group-hover:animate-pulse"></div>
+                        
+                        <!-- Conteúdo do botão -->
+                        <div class="relative z-10 flex items-center">
+                            <i class="fas fa-comments mr-3 text-xl group-hover:scale-110 transition-transform duration-300"></i>
+                            <span class="group-hover:tracking-wide group-hover:animate-bounce transition-all duration-300">Vamos conversar sobre seu projeto?</span>
+                            <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform duration-300"></i>
+                        </div>
+                        
+                        <!-- Efeito de partículas no hover -->
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute top-2 left-4 w-1 h-1 bg-white rounded-full animate-ping"></div>
+                            <div class="absolute top-4 right-6 w-1 h-1 bg-white rounded-full animate-ping" style="animation-delay: 0.2s;"></div>
+                            <div class="absolute bottom-3 left-8 w-1 h-1 bg-white rounded-full animate-ping" style="animation-delay: 0.4s;"></div>
+                        </div>
+                    </a>
+                    
+                    <!-- Texto de apoio -->
+                    <p class="text-center mt-4 text-sm text-accent/70 animate-pulse">
+                        <i class="fas fa-clock mr-1 text-green-500"></i>
+                        <span class="font-semibold">Resposta em até 2 horas</span> • 
+                        <i class="fas fa-gift mr-1 text-yellow-500"></i>
+                        <span class="font-semibold">Orçamento gratuito</span>
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -1384,6 +1556,49 @@
                 }
             }
         }, 30000); // Verifica a cada 30 segundos
+
+        // Animação dos contadores da seção Sobre
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // 2 segundos
+                const increment = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    if (target === 100) {
+                        counter.textContent = Math.floor(current) + '%';
+                    } else if (target === 200) {
+                        counter.textContent = '+' + Math.floor(current) + '%';
+                    } else {
+                        counter.textContent = '+' + Math.floor(current);
+                    }
+                }, 16);
+            });
+        }
+
+        // Inicia animação quando a seção Sobre entra na viewport
+        const sobreSection = document.getElementById('sobre');
+        if (sobreSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            observer.observe(sobreSection);
+        }
     </script>
 </body>
 
