@@ -416,7 +416,7 @@
     <div id="particles-js"></div>
 
     <!-- Banner de Urgência -->
-    <div class="bg-gradient-to-r from-secondary to-tertiary text-white text-center py-4 px-4 fixed w-full top-0 z-40">
+    <div id="urgency-banner" class="bg-gradient-to-r from-secondary to-tertiary text-white text-center py-4 px-4 fixed w-full top-0 z-40">
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <div class="flex items-center justify-center">
                 <i class="fas fa-fire text-orange-300 mr-2"></i>
@@ -1517,16 +1517,23 @@
         // Executar uma vez para definir estado inicial
         updateNavbar();
 
-        // Garantir que o menu sempre fique fixo no topo
-        if (navbar) {
+        // Posicionar navbar imediatamente abaixo do banner
+        function positionNavbarBelowBanner() {
+            const banner = document.getElementById('urgency-banner');
+            if (!navbar || !banner) return;
+            const bannerHeight = banner.offsetHeight || 0;
             navbar.style.position = 'fixed';
-            navbar.style.top = '40px';
+            navbar.style.top = bannerHeight + 'px';
             navbar.style.left = '0';
             navbar.style.right = '0';
             navbar.style.zIndex = '50';
             navbar.style.transition = 'transform 0.3s ease-in-out';
-            navbar.style.transform = 'translateY(0)'; // Garantir posição inicial
+            navbar.style.transform = 'translateY(0)';
         }
+
+        window.addEventListener('load', positionNavbarBelowBanner);
+        window.addEventListener('resize', positionNavbarBelowBanner);
+        positionNavbarBelowBanner();
 
         // Mobile menu toggle with animation
         const mobileMenuButton = document.getElementById('mobile-menu-button');
