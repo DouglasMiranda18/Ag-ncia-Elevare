@@ -7,7 +7,7 @@
     <title>Agência Elevare | Marketing Digital com Resultados Reais | Aumente suas Vendas</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Agência Elevare: Especialistas em Marketing Digital. Aumente suas vendas em até 200% com estratégias comprovadas. Site + Instagram + Tráfego Pago. Resultados garantidos!">
+    <meta name="description" content="Agência Elevare: Especialistas em Marketing Digital. Aumente suas vendas em até 85% com estratégias comprovadas. Site + Instagram + Tráfego Pago. Resultados garantidos!">
     <meta name="keywords" content="agência de marketing digital, marketing digital, criação de sites, redes sociais, tráfego pago, branding, SEO, email marketing, aumento de vendas">
     <meta name="author" content="Agência Elevare">
     <meta name="robots" content="index, follow">
@@ -16,14 +16,14 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://agenciaelevare.netlify.app/">
     <meta property="og:title" content="Agência Elevare | Marketing Digital com Resultados Reais">
-    <meta property="og:description" content="Aumente suas vendas em até 200% com estratégias comprovadas. Site + Instagram + Tráfego Pago. Resultados garantidos!">
+    <meta property="og:description" content="Aumente suas vendas em até 85% com estratégias comprovadas. Site + Instagram + Tráfego Pago. Resultados garantidos!">
     <meta property="og:image" content="https://agenciaelevare.netlify.app/Logo Elevare.png">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://agenciaelevare.netlify.app/">
     <meta property="twitter:title" content="Agência Elevare | Marketing Digital com Resultados Reais">
-    <meta property="twitter:description" content="Aumente suas vendas em até 200% com estratégias comprovadas. Site + Instagram + Tráfego Pago. Resultados garantidos!">
+    <meta property="twitter:description" content="Aumente suas vendas em até 85% com estratégias comprovadas. Site + Instagram + Tráfego Pago. Resultados garantidos!">
     <meta property="twitter:image" content="https://agenciaelevare.netlify.app/Logo Elevare.png">
     
     <!-- Favicon -->
@@ -218,21 +218,47 @@
         }
 
         .glass-nav {
-            background: rgba(239, 226, 211, 0.8);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(239, 226, 211, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             position: fixed;
             top: 40px;
             left: 0;
             right: 0;
             z-index: 50;
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Melhorar legibilidade dos links do menu */
+        .glass-nav a {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+        }
+        
+        .glass-nav a:hover {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
         /* Ajuste para mobile - banner menor */
         @media (max-width: 768px) {
             .glass-nav {
-                top: 44px; /* Ajusta para o banner maior */
+                top: 40px; /* Ajusta para o banner */
+            }
+            
+            /* Corrigir ícones comprimidos no mobile */
+            .contact-icon {
+                min-width: 56px !important;
+                min-height: 56px !important;
+                width: 56px !important;
+                height: 56px !important;
+                flex-shrink: 0 !important;
+            }
+            
+            /* Garantir que os ícones dentro mantenham proporção */
+            .contact-icon i {
+                font-size: 1.25rem !important;
+                line-height: 1 !important;
             }
         }
 
@@ -439,7 +465,7 @@
     <div id="particles-js"></div>
 
     <!-- Banner de Urgência -->
-    <div id="urgency-banner" class="bg-gradient-to-r from-secondary to-tertiary text-white text-center py-4 px-4 fixed w-full top-0 z-40">
+    <div id="urgency-banner" class="bg-gradient-to-r from-secondary to-tertiary text-white text-center py-2 sm:py-4 px-4 fixed w-full top-0 z-40">
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <div class="flex items-center justify-center">
                 <i class="fas fa-fire text-orange-300 mr-2"></i>
@@ -485,7 +511,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass-nav py-4 px-6 shadow-lg">
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-accent/95 backdrop-blur-md py-4 px-6 shadow-lg border-t border-white/20">
             <div class="flex flex-col space-y-4">
                 <a href="#sobre" class="text-accent hover:text-secondary transition-all hover:scale-105">Sobre</a>
                 <a href="#processo" class="text-accent hover:text-secondary transition-all hover:scale-105">Como Trabalhamos</a>
@@ -500,11 +526,11 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section min-h-screen flex items-center pt-32 pb-16 px-6 md:px-12" style="padding-top: 120px;">
+    <section class="hero-section min-h-screen flex items-center pt-20 pb-16 px-6 md:px-12" style="padding-top: 80px;">
         <style>
             @media (max-width: 768px) {
                 .hero-section {
-                    padding-top: 120px !important;
+                    padding-top: 60px !important;
                 }
             }
         </style>
@@ -512,7 +538,7 @@
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 reveal">
                     <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-accent leading-tight mb-6">
-                        Aumente suas vendas em até 200% com estratégias que realmente funcionam
+                        Aumente suas vendas em até 85% com estratégias que realmente funcionam
                     </h1>
                     <p class="text-lg md:text-xl text-accent/80 mb-8 max-w-lg">
                         <strong>Site + Instagram + Tráfego Pago</strong> que transformam visitantes em clientes. 
@@ -535,7 +561,7 @@
                         </div>
                         <div class="flex items-center gap-2">
                             <i class="fas fa-users text-purple-500"></i>
-                            <span>+50 clientes satisfeitos</span>
+                            <span>+25 clientes satisfeitos</span>
                         </div>
                     </div>
                 </div>
@@ -574,12 +600,12 @@
                 <!-- Prova Social -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                     <div class="glass-card p-4 rounded-xl">
-                        <div class="text-3xl font-bold text-secondary mb-2">+50</div>
+                        <div class="text-3xl font-bold text-secondary mb-2">+25</div>
                         <div class="text-accent/80 text-sm">Projetos Entregues</div>
-                        <div class="text-accent/60 text-xs mt-1">100% de sucesso</div>
+                        <div class="text-accent/60 text-xs mt-1">95% de sucesso</div>
                     </div>
                     <div class="glass-card p-4 rounded-xl">
-                        <div class="text-3xl font-bold text-secondary mb-2">+200%</div>
+                        <div class="text-3xl font-bold text-secondary mb-2">+85%</div>
                         <div class="text-accent/80 text-sm">Aumento Médio</div>
                         <div class="text-accent/60 text-xs mt-1">nas vendas</div>
                     </div>
@@ -1016,11 +1042,11 @@
                 <!-- Prova Social -->
                 <div class="grid grid-cols-3 gap-6 mb-8">
                     <div class="text-center reveal" style="animation-delay: 0.1s;">
-                        <div class="text-3xl font-bold text-secondary mb-2 counter" data-target="50">0</div>
+                        <div class="text-3xl font-bold text-secondary mb-2 counter" data-target="25">0</div>
                         <div class="text-sm text-accent/70 font-medium">Projetos Entregues</div>
                     </div>
                     <div class="text-center reveal" style="animation-delay: 0.2s;">
-                        <div class="text-3xl font-bold text-secondary mb-2 counter" data-target="200">0</div>
+                        <div class="text-3xl font-bold text-secondary mb-2 counter" data-target="85">0</div>
                         <div class="text-sm text-accent/70 font-medium">Aumento em Vendas</div>
                     </div>
                     <div class="text-center reveal" style="animation-delay: 0.3s;">
@@ -1305,7 +1331,7 @@
                             <!-- Instagram -->
                             <div class="flex items-center gap-6 group">
                                 <a href="https://www.instagram.com/agenciaelevarebr/" target="_blank"
-                                    class="w-14 h-14 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+                                    class="contact-icon w-14 h-14 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
                                     <i class="fab fa-instagram text-white text-xl"></i>
                                 </a>
                                 <div>
@@ -1318,7 +1344,7 @@
                             <!-- WhatsApp -->
                             <div class="flex items-center gap-6 group">
                                 <a href="https://wa.me/+5581991143275" target="_blank"
-                                    class="w-14 h-14 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+                                    class="contact-icon w-14 h-14 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
                                     <i class="fas fa-phone-alt text-white text-xl"></i>
                                 </a>
                                 <div>
@@ -1332,7 +1358,7 @@
                             <!-- Email -->
                             <div class="flex items-center gap-6 group">
                                 <a href="mailto:agenciaelevarebr@gmail.com"
-                                    class="w-14 h-14 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+                                    class="contact-icon w-14 h-14 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
                                     <i class="fas fa-envelope text-white text-xl"></i>
                                 </a>
                                 <div>
@@ -1670,15 +1696,17 @@
 
             // Ajustar backdrop filter baseado na posição
             if (window.scrollY > 50) {
-                navbar.style.backdropFilter = 'blur(12px)';
-                navbar.style.backgroundColor = 'rgba(239, 226, 211, 0.9)';
+                navbar.style.backdropFilter = 'blur(15px)';
+                navbar.style.backgroundColor = 'rgba(239, 226, 211, 0.98)';
+                navbar.style.boxShadow = '0 4px 25px rgba(0, 0, 0, 0.15)';
                 if (backToTop) {
                 backToTop.classList.remove('opacity-0', 'invisible');
                 backToTop.classList.add('opacity-100', 'visible');
                 }
             } else {
-                navbar.style.backdropFilter = 'blur(8px)';
-                navbar.style.backgroundColor = 'rgba(239, 226, 211, 0.8)';
+                navbar.style.backdropFilter = 'blur(12px)';
+                navbar.style.backgroundColor = 'rgba(239, 226, 211, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
                 if (backToTop) {
                 backToTop.classList.add('opacity-0', 'invisible');
                 backToTop.classList.remove('opacity-100', 'visible');
@@ -1704,6 +1732,13 @@
             navbar.style.zIndex = '50';
             navbar.style.transition = 'transform 0.3s ease-in-out';
             navbar.style.transform = 'translateY(0)';
+            
+            // Ajustar padding da seção hero baseado na altura total do header
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                const totalHeaderHeight = bannerHeight + navbar.offsetHeight;
+                heroSection.style.paddingTop = (totalHeaderHeight + 20) + 'px';
+            }
         }
 
         window.addEventListener('load', positionNavbarBelowBanner);
