@@ -242,6 +242,20 @@
 
         /* Ajustes mobile */
         @media (max-width: 768px) {
+            /* Fundo sólido para o menu mobile (drop-down) */
+            #mobile-menu {
+                background: rgba(239, 226, 211, 0.98) !important; /* tom claro, igual à navbar */
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                border-top: 1px solid rgba(255, 255, 255, 0.3);
+                z-index: 60; /* acima do conteúdo */
+            }
+
+            /* Melhor legibilidade dos links no menu mobile */
+            #mobile-menu a {
+                color: #3b2a22 !important; /* aproxima do text-accent */
+            }
             
             /* Corrigir ícones comprimidos no mobile */
             .contact-icon {
