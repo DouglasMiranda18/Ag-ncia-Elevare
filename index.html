@@ -284,6 +284,37 @@
                 0 0 20px rgba(58, 139, 153, 0.3);
         }
 
+        /* ===== Popups/Modals base ===== */
+        .modal-backdrop {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 200ms ease;
+        }
+        .modal-backdrop.modal-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .z-70 { z-index: 70; }
+        .modal-panel {
+            transform: scale(0.96) translateY(6px);
+            opacity: 0;
+            transition: transform 220ms ease, opacity 220ms ease;
+        }
+        .modal-backdrop.modal-open .modal-panel {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        /* Mobile refinements for modals */
+        @media (max-width: 768px) {
+            .modal-panel {
+                width: calc(100% - 32px);
+                margin: 0 16px;
+                max-height: 80vh;
+                overflow: auto;
+            }
+        }
+
         .btn-primary {
             background: linear-gradient(135deg, #3a8b99, #55aebe);
             color: white;
@@ -807,7 +838,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Serviço 1 -->
-                <div class="service-card glass-card p-8 rounded-2xl" data-gsap="fade-up" data-gsap-delay="0.1">
+                <div class="service-card glass-card p-8 rounded-2xl cursor-pointer" data-gsap="fade-up" data-gsap-delay="0.1" data-service="social-media" role="button" tabindex="0">
                     <div
                         class="w-16 h-16 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center mb-6 transform rotate-12 neon-glow">
                         <i class="fas fa-hashtag text-2xl text-white"></i>
@@ -825,7 +856,7 @@
                 </div>
 
                 <!-- Serviço 2 -->
-                <div class="service-card glass-card p-8 rounded-2xl" data-gsap="fade-up" data-gsap-delay="0.2">
+                <div class="service-card glass-card p-8 rounded-2xl cursor-pointer" data-gsap="fade-up" data-gsap-delay="0.2" data-service="trafego" role="button" tabindex="0">
                     <div
                         class="w-16 h-16 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center mb-6 transform -rotate-12 neon-glow">
                         <i class="fas fa-chart-line text-2xl text-white"></i>
@@ -843,7 +874,7 @@
                 </div>
 
                 <!-- Serviço 3 -->
-                <div class="service-card glass-card p-8 rounded-2xl" data-gsap="fade-up" data-gsap-delay="0.3">
+                <div class="service-card glass-card p-8 rounded-2xl cursor-pointer" data-gsap="fade-up" data-gsap-delay="0.3" data-service="branding" role="button" tabindex="0">
                     <div
                         class="w-16 h-16 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center mb-6 transform rotate-45 neon-glow">
                         <i class="fas fa-paint-brush text-2xl text-white"></i>
@@ -861,7 +892,7 @@
                 </div>
 
                 <!-- Serviço 4 -->
-                <div class="service-card glass-card p-8 rounded-2xl" data-gsap="fade-up" data-gsap-delay="0.4">
+                <div class="service-card glass-card p-8 rounded-2xl cursor-pointer" data-gsap="fade-up" data-gsap-delay="0.4" data-service="sites" role="button" tabindex="0">
                     <div
                         class="w-16 h-16 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center mb-6 transform -rotate-45 neon-glow">
                         <i class="fas fa-laptop-code text-2xl text-white"></i>
@@ -879,7 +910,7 @@
                 </div>
 
                 <!-- Serviço 5 -->
-                <div class="service-card glass-card p-8 rounded-2xl" data-gsap="fade-up" data-gsap-delay="0.5">
+                <div class="service-card glass-card p-8 rounded-2xl cursor-pointer" data-gsap="fade-up" data-gsap-delay="0.5" data-service="seo" role="button" tabindex="0">
                     <div
                         class="w-16 h-16 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center mb-6 transform rotate-180 neon-glow">
                         <i class="fas fa-search text-2xl text-white"></i>
@@ -897,7 +928,7 @@
                 </div>
 
                 <!-- Serviço 6 -->
-                <div class="service-card glass-card p-8 rounded-2xl" data-gsap="fade-up" data-gsap-delay="0.6">
+                <div class="service-card glass-card p-8 rounded-2xl cursor-pointer" data-gsap="fade-up" data-gsap-delay="0.6" data-service="email" role="button" tabindex="0">
                     <div
                         class="w-16 h-16 bg-gradient-to-br from-secondary to-tertiary rounded-2xl flex items-center justify-center mb-6 transform rotate-90 neon-glow">
                         <i class="fas fa-bullhorn text-2xl text-white"></i>
@@ -1526,12 +1557,11 @@
     </button>
 
     <!-- Modal de Serviço -->
-    <div id="modal-servico" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 hidden">
-        <div
-            class="bg-white rounded-3xl p-8 max-w-lg w-full relative shadow-2xl border-2 border-secondary animate-fadeIn">
-            <button id="fechar-modal-servico"
-                class="absolute top-4 right-4 text-3xl text-secondary hover:text-tertiary transition-colors">&times;</button>
-            <div class="flex flex-col items-center text-center">
+    <div id="modal-servico" class="modal-backdrop fixed inset-0 bg-black/60 flex items-center justify-center z-70 hidden">
+        <div class="modal-panel bg-white rounded-3xl p-8 max-w-lg w-full relative shadow-2xl border-2 border-secondary">
+            <button id="fechar-modal-servico" aria-label="Fechar"
+                class="absolute top-3 right-4 text-3xl text-secondary hover:text-tertiary transition-colors">&times;</button>
+            <div class="flex flex-col items-center text-center" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
                 <div id="modal-icone"
                     class="w-16 h-16 flex items-center justify-center rounded-full mb-4 bg-gradient-to-br from-secondary to-tertiary shadow-lg">
                     <!-- Ícone dinâmico aqui -->
@@ -1842,6 +1872,53 @@
             window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
         });
 
+        // ===== Utils de Modal =====
+        const body = document.body;
+        const modalServico = document.getElementById('modal-servico');
+        const fecharModalServicoBtn = document.getElementById('fechar-modal-servico');
+
+        function openModal(modalEl) {
+            if (!modalEl) return;
+            modalEl.classList.remove('hidden');
+            requestAnimationFrame(() => modalEl.classList.add('modal-open'));
+            body.style.overflow = 'hidden';
+            fecharModalServicoBtn?.focus();
+        }
+
+        function closeModal(modalEl) {
+            if (!modalEl) return;
+            modalEl.classList.remove('modal-open');
+            setTimeout(() => {
+                modalEl.classList.add('hidden');
+                body.style.overflow = '';
+            }, 220);
+        }
+
+        // Abre modal ao clicar nas service-cards
+        document.querySelectorAll('[data-service]').forEach((card) => {
+            const serviceKey = card.getAttribute('data-service');
+            card.addEventListener('click', () => {
+                const data = servicos[serviceKey];
+                if (data) {
+                    document.getElementById('modal-titulo').textContent = data.titulo;
+                    document.getElementById('modal-descricao').textContent = data.descricao;
+                    document.getElementById('modal-icone').innerHTML = data.icone;
+                    openModal(modalServico);
+                }
+            });
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    card.click();
+                }
+            });
+        });
+
+        // Fechar modal por botão, overlay e ESC
+        fecharModalServicoBtn.addEventListener('click', () => closeModal(modalServico));
+        modalServico.addEventListener('click', (e) => { if (e.target === modalServico) closeModal(modalServico); });
+        window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modalServico.classList.contains('hidden')) closeModal(modalServico); });
+
         const servicos = {
             "social-media": {
                 titulo: "Social Media",
@@ -1874,14 +1951,7 @@
                 icone: '<i class="fas fa-bullhorn text-white text-3xl"></i>'
             }
         };
-        document.getElementById('fechar-modal-servico').addEventListener('click', function () {
-            document.getElementById('modal-servico').classList.add('hidden');
-        });
-        document.getElementById('modal-servico').addEventListener('click', function (e) {
-            if (e.target === this) {
-                this.classList.add('hidden');
-            }
-        });
+        // Handlers antigos substituídos pelos utilitários openModal/closeModal
 
         // Removido: contador de urgência e banner
 
