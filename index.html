@@ -552,12 +552,64 @@
         </div>
     </nav>
 
+    <!-- Black Friday Banner -->
+    <div class="black-friday-banner bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white py-3 px-6 text-center relative overflow-hidden">
+        <div class="container mx-auto flex items-center justify-center gap-3 md:gap-6">
+            <div class="flex items-center gap-2 animate-pulse">
+                <i class="fas fa-fire text-yellow-300 text-xl md:text-2xl"></i>
+                <span class="font-bold text-sm md:text-base">BLACK FRIDAY</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-sm md:text-base">Até <strong class="text-yellow-300 text-lg md:text-xl">20% de DESCONTO</strong> em todos os pacotes!</span>
+            </div>
+            <a href="#contato" class="bg-yellow-400 hover:bg-yellow-500 text-red-800 font-bold px-4 py-1 rounded-full text-xs md:text-sm transition-all hover:scale-105">
+                GARANTIR AGORA
+            </a>
+        </div>
+        <!-- Efeito de brilho animado -->
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+    </div>
+    <style>
+        .black-friday-banner {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            z-index: 40;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            overflow: hidden;
+        }
+        @media (max-width: 768px) {
+            .black-friday-banner {
+                top: 60px;
+            }
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .animate-shimmer {
+            animation: shimmer 3s infinite;
+        }
+        @media (max-width: 768px) {
+            .black-friday-banner .container {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .black-friday-banner .container > div {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+
     <!-- Hero Section -->
-    <section class="hero-section min-h-screen flex items-center pt-40 pb-16 px-6 md:px-12" style="padding-top: 160px;">
+    <section class="hero-section min-h-screen flex items-center pt-40 pb-16 px-6 md:px-12" style="padding-top: 200px;">
         <style>
             @media (max-width: 768px) {
                 .hero-section {
-                    padding-top: 140px !important;
+                    padding-top: 180px !important;
                 }
             }
         </style>
@@ -715,6 +767,18 @@
                             <p class="text-secondary/80 mb-4">Desenvolvimento de loja virtual completa para moda masculina premium.
                                 Sistema de pagamento, carrinho e painel administrativo.</p>
                             <a href="links-tfimports.html" target="_blank"
+                                class="text-secondary border border-secondary px-4 py-2 rounded-full hover:bg-secondary hover:text-white transition-all">
+                                Ver detalhes
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 5 - Org Freitas -->
+                    <div class="portfolio-item shadow-lg reveal" style="transition-delay: 0.5s;">
+                        <img src="Site Freitas.png" alt="Org Freitas - Plataforma de eSports com Loja e Tokens" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay p-6 text-center">
+                            <h3 class="font-serif text-xl font-bold text-secondary mb-2">Plataforma eSports + Loja</h3>
+                            <p class="text-secondary/80 mb-4">XTreino Freitas: treinos, campeonatos, sistema de tokens, loja virtual e área do cliente.</p>
+                            <a href="links-freitas.html" target="_blank"
                                 class="text-secondary border border-secondary px-4 py-2 rounded-full hover:bg-secondary hover:text-white transition-all">
                                 Ver detalhes
                             </a>
@@ -1290,7 +1354,7 @@
                 <div class="glass-card p-6 rounded-2xl">
                     <h3 class="font-bold text-accent mb-3">❓ "Qual o investimento necessário?"</h3>
                     <p class="text-accent/80 text-sm">Criamos pacotes personalizados para cada cliente, considerando seu orçamento e objetivos. Cada projeto é único e desenvolvido sob medida para suas necessidades específicas.</p>
-                    <p class="text-accent/80 text-sm mt-2">💡 <strong>Oferta especial:</strong> Últimas 3 vagas com 50% de desconto! Agende uma conversa para receber uma proposta personalizada.</p>
+                    <p class="text-accent/80 text-sm mt-2">💡 <strong>Black Friday:</strong> Aproveite até 20% de desconto em todos os pacotes! Agende uma conversa para receber uma proposta personalizada.</p>
                 </div>
             </div>
         </div>
@@ -1302,10 +1366,10 @@
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-2/3 mb-10 md:mb-0 reveal">
                     <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-                        Últimas 3 vagas com 50% de desconto - Garanta a sua!
+                        🛍️ BLACK FRIDAY - Até 20% de Desconto em Todos os Pacotes!
                     </h2>
                     <p class="text-white/90 text-lg max-w-xl">
-                        <strong>🔥 OFERTA LIMITADA:</strong> Pacotes personalizados com 50% de desconto
+                        <strong>🔥 OFERTA ESPECIAL BLACK FRIDAY:</strong> Aproveite até 20% de desconto em pacotes personalizados
                         <br><br>
                         <span class="text-yellow-300 font-bold">Site + Instagram + Tráfego Pago</span>
                         <br>
@@ -1321,7 +1385,7 @@
                     
                     <p class="text-white/70 text-sm mt-4 text-center">
                         <i class="fas fa-percentage mr-2"></i>
-                        Desconto válido apenas para as próximas 3 vagas
+                        Oferta válida durante a Black Friday - Não perca essa oportunidade!
                     </p>
                 </div>
             </div>
@@ -1740,13 +1804,37 @@
             }
         }
 
+        // Função para esconder banner da Black Friday ao rolar
+        function handleBlackFridayBanner() {
+            const blackFridayBanner = document.querySelector('.black-friday-banner');
+            if (!blackFridayBanner) return;
+            
+            const scrollY = window.scrollY || window.pageYOffset;
+            const hideThreshold = 100; // Esconde após 100px de scroll
+            
+            if (scrollY > hideThreshold) {
+                blackFridayBanner.style.transform = 'translateY(-100%)';
+                blackFridayBanner.style.opacity = '0';
+                blackFridayBanner.style.pointerEvents = 'none'; // Desabilita cliques quando escondido
+            } else {
+                blackFridayBanner.style.transform = 'translateY(0)';
+                blackFridayBanner.style.opacity = '1';
+                blackFridayBanner.style.pointerEvents = 'auto'; // Habilita cliques quando visível
+            }
+        }
+
         // Adicionar listener de scroll
-        window.addEventListener('scroll', updateNavbar);
+        window.addEventListener('scroll', function() {
+            updateNavbar();
+            handleBlackFridayBanner();
+            ensureNavbarAndHeroSpacing(); // Ajustar espaçamento quando banner desaparece
+        });
         
         // Executar uma vez para definir estado inicial
         updateNavbar();
+        handleBlackFridayBanner();
 
-        // Garantir navbar fixa e espaço no hero sem banner
+        // Garantir navbar fixa e espaço no hero com banner
         function ensureNavbarAndHeroSpacing() {
             if (!navbar) return;
             navbar.style.position = 'fixed';
@@ -1755,9 +1843,22 @@
             navbar.style.right = '0';
             navbar.style.zIndex = '50';
             const hero = document.querySelector('.hero-section');
+            const blackFridayBanner = document.querySelector('.black-friday-banner');
+            
+            // Ajustar posição do banner baseado na altura da navbar
+            if (blackFridayBanner) {
+                const navHeight = navbar.offsetHeight || 72;
+                blackFridayBanner.style.top = navHeight + 'px';
+            }
+            
             if (hero) {
                 const navHeight = navbar.offsetHeight || 72;
-                hero.style.paddingTop = Math.max(parseInt(getComputedStyle(hero).paddingTop) || 0, navHeight + 80) + 'px';
+                // Verificar se o banner está visível baseado no scroll
+                const scrollY = window.scrollY || window.pageYOffset;
+                const hideThreshold = 100;
+                const isBannerVisible = scrollY <= hideThreshold;
+                const bannerHeight = (blackFridayBanner && isBannerVisible) ? blackFridayBanner.offsetHeight || 60 : 0;
+                hero.style.paddingTop = Math.max(parseInt(getComputedStyle(hero).paddingTop) || 0, navHeight + bannerHeight + 80) + 'px';
             }
         }
 
