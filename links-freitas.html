@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Org Freitas - Plataforma eSports | Agência Elevare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#efe2d3',
+                        secondary: '#3a8b99',
+                        tertiary: '#55aebe',
+                        accent: '#74634f',
+                        lightAccent: '#f6eee7',
+                        darkAccent: '#5a4d3d'
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        display: ['Syncopate', 'sans-serif'],
+                        merriweather: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            background: linear-gradient(135deg, #efe2d3, #f6eee7);
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3a8b99, #55aebe);
+            color: white;
+            padding: 0.9rem 1.6rem;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(58, 139, 153, 0.3);
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(58, 139, 153, 0.3);
+        }
+        .iframe-frame {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 4px solid #3a8b99;
+        }
+        .iframe-header {
+            background: linear-gradient(90deg, #3a8b99, #55aebe);
+            color: white;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .dots {
+            display: flex; gap: 6px;
+        }
+        .dot { width: 10px; height: 10px; border-radius: 9999px; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="py-8 px-6 md:px-12">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center">
+                    <div class="relative w-16 h-16 flex items-center">
+                        <img src="LOGO ELEVARE.png" alt="Logo Elevare" class="w-full h-full object-contain rounded-full">
+                    </div>
+                    <span class="text-accent font-serif text-2xl font-bold ml-3">ELEVARE</span>
+                </a>
+                <div class="flex gap-3">
+                    <a href="index.html" class="btn-primary">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar ao Site
+                    </a>
+                    <a href="https://orgfreitas.com.br/" target="_blank" rel="noopener" class="btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Abrir orgfreitas.com.br
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="py-12 px-6 md:px-12">
+        <div class="container mx-auto max-w-6xl">
+            <!-- Hero -->
+            <div class="text-center mb-16">
+                <h1 class="font-serif text-4xl md:text-5xl font-bold text-accent mb-4">
+                    X-TREINO FREITAS
+                </h1>
+                <p class="text-accent/80 text-lg max-w-3xl mx-auto">
+                    Plataforma de treinos e campeonatos com sistema de <strong>tokens</strong>, <strong>loja virtual</strong>,
+                    <strong>área do cliente</strong> e <strong>reservas de horários</strong>. Desenvolvido pela Agência Elevare.
+                </p>
+                <div class="mt-6">
+                    <a href="https://orgfreitas.com.br/" target="_blank" rel="noopener" class="btn-primary">
+                        <i class="fas fa-globe-americas"></i>
+                        Acessar o site
+                    </a>
+                </div>
+            </div>
+
+            <!-- Website Preview (imagem clicável por bloqueio de iframe no domínio) -->
+            <section class="glass-card rounded-2xl p-8 mb-16">
+                <h2 class="font-serif text-3xl font-bold text-accent mb-6 text-center">Preview do Site</h2>
+                <div class="relative">
+                    <img src="Site Freitas.png" alt="Preview do site Org Freitas"
+                         class="w-full h-auto rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300 cursor-pointer"
+                         onclick="window.open('https://orgfreitas.com.br/', '_blank')">
+                    <div class="absolute inset-0 bg-black/20 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="bg-white/90 backdrop-blur-sm rounded-full p-4">
+                            <i class="fas fa-external-link-alt text-secondary text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <p class="text-accent/70 text-sm">
+                        Clique na imagem para abrir <strong>orgfreitas.com.br</strong> em nova aba.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Destaques -->
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-xl text-center">
+                    <div class="w-14 h-14 rounded-full bg-secondary text-white flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-accent mb-2">Treinos & Campeonatos</h3>
+                    <p class="text-accent/80 text-sm">Programação diária, modo liga e vagas com ranking e transmissão.</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl text-center">
+                    <div class="w-14 h-14 rounded-full bg-tertiary text-white flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-accent mb-2">Sistema de Tokens</h3>
+                    <p class="text-accent/80 text-sm">Compra e uso de tokens para reservas de horários e inscrições.</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl text-center">
+                    <div class="w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-accent mb-2">Área do Cliente</h3>
+                    <p class="text-accent/80 text-sm">Pedidos, produtos, downloads e gestão de assinaturas.</p>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <div class="text-center mt-16">
+                <h3 class="text-2xl font-bold text-accent mb-4">Quer um projeto nesse nível?</h3>
+                <p class="text-accent/80 mb-8 max-w-2xl mx-auto">
+                    Construímos plataformas completas com foco em performance e conversão.
+                </p>
+                <a href="https://wa.me/5581991143275?text=Olá! Vi o projeto da Org Freitas e quero um orçamento." class="btn-primary">
+                    <i class="fab fa-whatsapp"></i>
+                    Falar com a Elevare
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 bg-darkAccent text-white mt-16">
+        <div class="container mx-auto text-center">
+            <div class="flex items-center justify-center mb-6">
+                <img src="LOGO ELEVARE.png" alt="Logo Elevare" class="w-10 h-10 mr-2">
+                <span class="text-white font-serif text-2xl font-bold">Elevare</span>
+            </div>
+            <p class="text-white/80 mb-4">
+                Transformamos negócios com soluções digitais sob medida.
+            </p>
+            <p class="text-white/60">© 2025 Agência Elevare. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+
