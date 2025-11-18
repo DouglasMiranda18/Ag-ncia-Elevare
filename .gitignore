@@ -1,0 +1,23 @@
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+*.log
+
+# Arquivos do editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Arquivos de extensões do Cursor
+.cursor/
+
+# Arquivos do Windows
+AppData/
+Desktop.ini
+

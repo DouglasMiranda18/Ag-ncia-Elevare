@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELEVARE - Briefing</title>
+    <style>
+        :root {
+            --azul-escuro: #3a8b99;
+            --azul-claro: #55aebe;
+            --bege-claro: #efe2d3;
+            --bege-medio: #d4c0a8;
+            --marrom-acinzentado: #826f59;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bege-claro);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            background-color: var(--azul-escuro);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        
+        .nav-links a:hover {
+            color: var(--bege-claro);
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+        }
+        
+        .form-section {
+            border-left: 4px solid var(--azul-claro);
+            background-color: white;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            color: var(--azul-escuro);
+            border-bottom: 2px solid var(--bege-medio);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        
+        /* Ajuste para inputs e textareas dentro do modal de visualização */
+        .modal-body .form-control {
+            width: calc(100% - 1.5rem); /* Ajusta para padding */
+            background-color: #f8f8f8; /* Fundo levemente diferente */
+            border: 1px solid #e0e0e0;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: #333;
+            box-sizing: border-box; /* Inclui padding e borda na largura */
+        }
+        
+        .form-control:focus {
+            border-color: var(--azul-claro);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(85, 174, 190, 0.25);
+        }
+        
+        textarea.form-control {
+            min-height: 80px; /* Reduz a altura mínima para ser mais flexível */
+            resize: vertical; /* Permite redimensionar manualmente se necessário */
+            overflow-y: hidden; /* Oculta a barra de rolagem inicial e permite o auto-resize JS */
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--azul-escuro);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--azul-claro);
+        }
+        
+        .btn-secondary {
+            background-color: var(--marrom-acinzentado);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #9a8569;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .page-title {
+            color: var(--azul-escuro);
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .page-subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-container {
+            display: flex;
+            min-height: calc(100vh - 64px);
+        }
+        
+        .admin-sidebar {
+            width: 250px;
+            background-color: var(--azul-escuro);
+            color: white;
+            padding: 1.5rem;
+        }
+        
+        .admin-content {
+            flex: 1;
+            padding: 1.5rem;
+            background-color: var(--bege-claro);
+        }
+        
+        .admin-menu {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+        
+        .admin-menu-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-menu-link {
+            display: block;
+            padding: 0.75rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .admin-menu-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .admin-menu-link.active {
+            background-color: var(--azul-claro);
+        }
+        
+        .user-info {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .response-card {
+            border-left: 4px solid var(--azul-claro);
+            cursor: pointer;
+            transition: box-shadow 0.3s;
+        }
+        
+        .response-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            overflow-y: auto; /* Permite rolagem do overlay se o modal for muito alto */
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            border-radius: 8px;
+            max-width: 800px;
+            position: relative;
+            overflow-y: auto; /* Permite rolagem do conteúdo do modal se for muito alto */
+            max-height: 90vh; /* Limita a altura do modal para caber na tela */
+            box-sizing: border-box; /* Inclui padding na altura */
+        }
+        
+        /* Estilo específico para o modal de login para torná-lo menor */
+        #login-modal-content {
+            max-width: 400px;
+            padding: 2rem;
+        }
+
+        .modal-header {
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            color: var(--azul-escuro);
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1100;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .toast-success {
+            background-color: #48bb78;
+        }
+        
+        .toast-error {
+            background-color: #f56565;
+        }
+        
+        .loader {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+            margin-left: 0.5rem;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .hidden {
+            display: none;
+        }
+
+        /* Estilos para o conteúdo do modal de detalhes (para melhor visualização) */
+        .modal-section-content p {
+            margin-bottom: 0.5rem; /* Adiciona espaçamento entre parágrafos */
+            line-height: 1.5; /* Melhora a legibilidade do texto */
+        }
+        .modal-section-content strong {
+            display: block; /* Garante que o rótulo da pergunta fique em sua própria linha */
+            color: #555;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Estilo para ajustar inputs e textareas no modal de detalhes */
+        .modal-detail-value {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #e0e0e0;
+            background-color: #f8f8f8;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            white-space: pre-wrap; /* Preserva quebras de linha e espaços */
+            word-break: break-word; /* Quebra palavras longas */
+        }
+        
+        @media (max-width: 768px) {
+            .admin-container {
+                flex-direction: column;
+            }
+            
+            .admin-sidebar {
+                width: 100%;
+                padding: 1rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                margin: 1rem; /* Margem menor em telas pequenas */
+                max-width: calc(100% - 2rem); /* Ajusta a largura para telas menores */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo" id="home-link">ELEVARE</a>
+                <div class="nav-links">
+                    <a href="#" id="nav-home-link">Home</a>
+                    <a href="#" id="nav-admin-link">Admin</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" id="main-content">
+        </div>
+
+    <div id="toast" class="toast">
+        <span id="toast-message"></span>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content" id="briefing-detail-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="briefing-modal-title">Detalhes do Briefing</h3>
+                <button class="close-modal" id="close-briefing-modal">&times;</button>
+            </div>
+            <div id="briefing-modal-body">
+                </div>
+        </div>
+        <div class="modal-content hidden" id="login-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="login-modal-title">Área Administrativa</h3>
+                <button class="close-modal" id="close-login-modal">&times;</button>
+            </div>
+            <div id="login-modal-body">
+                </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script>
+        // Sua configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCray6IDDaZ-n76vChV2KKuu17SECL5hXY",
+            authDomain: "elevare-981b1.firebaseapp.com",
+            projectId: "elevare-981b1",
+            storageBucket: "elevare-981b1.firebasestorage.app",
+            messagingSenderId: "1034421294665", 
+            appId: "1:1034421294665:web:f2535ece4f604ca4a21198",
+            measurementId: "G-BGJJVBSE2C"
+        };
+
+        // Inicializa o Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        let currentAdminUser = null; // Variável para armazenar o usuário admin logado
+
+        // --- Funções Utilitárias ---
+
+        // Notificação Toast
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+
+            toast.className = `toast toast-${type}`;
+            toastMessage.textContent = message;
+
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Formatar data
+        function formatDate(timestamp) {
+            if (!timestamp) return 'Data não disponível';
+
+            // Verifica se é um objeto Timestamp do Firebase ou um Date
+            const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+            return date.toLocaleString('pt-BR');
+        }
+
+        // Esconde todos os modais
+        function hideAllModals() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('briefing-detail-modal-content').classList.add('hidden');
+            document.getElementById('login-modal-content').classList.add('hidden');
+        }
+
+        // --- Funções de Carregamento de Páginas e Conteúdo ---
+
+        // Carrega o formulário de briefing na área de conteúdo principal
+        function loadBriefingForm() {
+            hideAllModals(); // Esconde qualquer modal aberto
+            const mainContent = document.getElementById('main-content');
+
+            mainContent.innerHTML = `
+                <div class="card" style="max-width: 800px; margin: 2rem auto;">
+                    <h1 class="page-title text-center">ELEVARE</h1>
+                    <p class="page-subtitle text-center">Preencha o briefing abaixo para iniciarmos seu projeto</p>
+                    
+                    <form id="briefing-form">
+                        <div class="form-section">
+                            <h2 class="section-title">Sobre a empresa</h2>
+                            <div class="form-group">
+                                <label class="form-label">Nome da empresa</label>
+                                <input type="text" name="company_name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Segmento de atuação</label>
+                                <input type="text" name="company_segment" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Descreva brevemente sua empresa e seus serviços/produtos</label>
+                                <textarea name="company_description" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Quais são os diferenciais da sua empresa?</label>
+                                <textarea name="company_differentials" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Quem são seus principais concorrentes?</label>
+                                <textarea name="company_competitors" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h2 class="section-title">Objetivos</h2>
+                            <div class="form-group">
+                                <label class="form-label">Quais são os principais objetivos do seu projeto?</label>
+                                <textarea name="project_objectives" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Qual é o público-alvo do seu projeto?</label>
+                                <textarea name="target_audience" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Quais resultados você espera alcançar?</label>
+                                <textarea name="expected_results" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h2 class="section-title">Identidade visual</h2>
+                            <div class="form-group">
+                                <label class="form-label">Sua empresa já possui logotipo?</label>
+                                <select name="has_logo" class="form-control">
+                                    <option value="sim">Sim</option>
+                                    <option value="não">Não</option>
+                                    <option value="em desenvolvimento">Em desenvolvimento</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Sua empresa possui manual de identidade visual?</label>
+                                <select name="has_brand_manual" class="form-control">
+                                    <option value="sim">Sim</option>
+                                    <option value="não">Não</option>
+                                    <option value="em desenvolvimento">Em desenvolvimento</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Quais cores representam sua marca?</label>
+                                <textarea name="brand_colors" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Qual estilo visual você prefere para seu projeto?</label>
+                                <textarea name="visual_style" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h2 class="section-title">Comunicação</h2>
+                            <div class="form-group">
+                                <label class="form-label">Qual é o tom de voz da sua marca? (formal, descontraído, técnico, etc.)</label>
+                                <textarea name="brand_tone" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Quais são as principais mensagens que você deseja transmitir?</label>
+                                <textarea name="key_messages" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h2 class="section-title">Site</h2>
+                            <div class="form-group">
+                                <label class="form-label">Quais páginas/seções você deseja incluir no site?</label>
+                                <textarea name="site_sections" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Você já possui domínio registrado?</label>
+                                <select name="has_domain" class="form-control">
+                                    <option value="sim">Sim</option>
+                                    <option value="não">Não</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Você já possui hospedagem?</label>
+                                <select name="has_hosting" class="form-control">
+                                    <option value="sim">Sim</option>
+                                    <option value="não">Não</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Quais funcionalidades específicas você deseja no site?</label>
+                                <textarea name="site_features" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h2 class="section-title">Inspirações</h2>
+                            <div class="form-group">
+                                <label class="form-label">Existem sites ou projetos que você admira e gostaria de usar como referência?</label>
+                                <textarea name="reference_sites" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">O que você gosta nesses sites de referência?</label>
+                                <textarea name="reference_likes" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h2 class="section-title">Informações técnicas</h2>
+                            <div class="form-group">
+                                <label class="form-label">Você possui preferência por alguma plataforma ou tecnologia específica?</label>
+                                <textarea name="tech_preferences" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Você precisa integrar o site com algum sistema ou ferramenta externa?</label>
+                                <textarea name="integrations" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h2 class="section-title">Observações</h2>
+                            <div class="form-group">
+                                <label class="form-label">Informações adicionais que você considera relevantes para o projeto</label>
+                                <textarea name="additional_info" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Qual é o prazo desejado para a conclusão do projeto?</label>
+                                <input type="text" name="project_deadline" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Qual é o orçamento disponível para o projeto?</label>
+                                <input type="text" name="project_budget" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h2 class="section-title">Informações de contato</h2>
+                            <div class="form-group">
+                                <label class="form-label">Nome completo</label>
+                                <input type="text" name="contact_name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">E-mail</label>
+                                <input type="email" name="contact_email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Telefone</label>
+                                <input type="tel" name="contact_phone" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary" id="submit-btn">
+                                <span id="submit-text">Enviar briefing</span>
+                                <span id="submit-loader" class="loader hidden"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            `;
+
+            // Adiciona o manipulador de submissão do formulário
+            document.getElementById('briefing-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const submitBtn = document.getElementById('submit-btn');
+                const submitText = document.getElementById('submit-text');
+                const submitLoader = document.getElementById('submit-loader');
+
+                submitBtn.disabled = true;
+                submitText.textContent = 'Enviando...';
+                submitLoader.classList.remove('hidden');
+
+                const formData = new FormData(e.target);
+                const briefingData = {};
+                for (const [key, value] of formData.entries()) {
+                    briefingData[key] = value;
+                }
+                briefingData.timestamp = firebase.firestore.FieldValue.serverTimestamp();
+                briefingData.status = 'novo'; // Status inicial
+
+                try {
+                    await db.collection('briefings').add(briefingData);
+                    e.target.reset();
+                    showToast('Briefing enviado com sucesso! Entraremos em contato em breve.', 'success');
+                } catch (error) {
+                    console.error('Erro ao enviar o formulário:', error);
+                    showToast('Erro ao enviar o formulário. Por favor, tente novamente.', 'error');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitText.textContent = 'Enviar briefing';
+                    submitLoader.classList.add('hidden');
+                }
+            });
+        }
+
+        // Carrega o formulário de login do administrador no modal
+        function loadAdminLoginModal() {
+            const loginModalBody = document.getElementById('login-modal-body');
+            const modal = document.getElementById('modal');
+            const loginModalContent = document.getElementById('login-modal-content');
+
+            hideAllModals(); // Esconde outros modais se houver
+            loginModalContent.classList.remove('hidden'); // Mostra o conteúdo do modal de login
+            modal.style.display = 'flex'; // Exibe o modal principal (overlay)
+
+            loginModalBody.innerHTML = `
+                <form id="login-form">
+                    <div class="form-group">
+                        <label class="form-label">E-mail</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Senha</label>
+                        <input type="password" id="password" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block" id="login-btn">
+                            <span id="login-text">Entrar</span>
+                            <span id="login-loader" class="loader hidden"></span>
+                        </button>
+                    </div>
+                    
+                    <div id="login-error" class="text-center" style="color: #f56565; margin-top: 1rem; display: none;"></div>
+                    
+                    <div class="text-center" style="margin-top: 1rem; color: #666; font-size: 0.875rem;">
+                        <p>Para teste: admin@elevare.com / admin12345</p>
+                        <p><strong>Crie este usuário no Firebase Authentication para que o login funcione.</strong></p>
+                    </div>
+                </form>
+            `;
+
+            // Configura os botões de fechar do modal de login
+            document.getElementById('close-login-modal').onclick = hideAllModals;
+            modal.onclick = (e) => { // Fecha o modal ao clicar no overlay
+                if (e.target === modal) hideAllModals();
+            };
+
+            // Remove e anexa novamente o event listener para evitar duplicações
+            // Esta é uma correção crucial para evitar múltiplos manipuladores em formulários dinamicamente carregados
+            const oldLoginForm = document.getElementById('login-form');
+            if (oldLoginForm) { 
+                const newLoginForm = oldLoginForm.cloneNode(true);
+                oldLoginForm.parentNode.replaceChild(newLoginForm, oldLoginForm);
+            }
+
+            document.getElementById('login-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const loginBtn = document.getElementById('login-btn');
+                const loginText = document.getElementById('login-text');
+                const loginLoader = document.getElementById('login-loader');
+                const loginError = document.getElementById('login-error');
+
+                loginBtn.disabled = true;
+                loginText.textContent = 'Entrando...';
+                loginLoader.classList.remove('hidden');
+                loginError.style.display = 'none';
+
+                try {
+                    await auth.signInWithEmailAndPassword(email, password);
+                    showToast('Login realizado com sucesso!', 'success');
+                    hideAllModals(); // Fecha o modal de login
+                    // O onAuthStateChanged será disparado e carregará o dashboard
+                } catch (error) {
+                    console.error('Erro de login:', error);
+                    let errorMessage = 'Ocorreu um erro ao fazer login. Tente novamente.';
+                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') { 
+                        errorMessage = 'E-mail ou senha incorretos.';
+                    } else if (error.code === 'auth/invalid-email') {
+                        errorMessage = 'Formato de e-mail inválido.';
+                    } else if (error.code === 'auth/too-many-requests') {
+                        errorMessage = 'Muitas tentativas de login. Tente novamente mais tarde.';
+                    }
+                    loginError.textContent = errorMessage;
+                    loginError.style.display = 'block';
+                } finally {
+                    loginBtn.disabled = false;
+                    loginText.textContent = 'Entrar';
+                    loginLoader.classList.add('hidden');
+                }
+            });
+        }
+
+        let allBriefings = []; // Armazena todos os briefings carregados
+
+        // Carrega o painel administrativo na área de conteúdo principal
+        function loadAdminDashboard() {
+            hideAllModals(); // Esconde qualquer modal aberto
+            if (!currentAdminUser) { // Se não estiver logado, não deve carregar o dashboard
+                loadBriefingForm(); // Redireciona para o formulário de briefing
+                showToast('Acesso negado. Faça login para acessar o painel administrativo.', 'error');
+                return;
+            }
+
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = `
+                <div class="admin-container">
+                    <div class="admin-sidebar">
+                        <h2>ELEVARE Admin</h2>
+                        <ul class="admin-menu">
+                            <li class="admin-menu-item">
+                                <a href="#" class="admin-menu-link active" id="dashboard-link">Dashboard</a>
+                            </li>
+                        </ul>
+                        <div class="user-info">
+                            <div style="opacity: 0.7; font-size: 0.875rem; margin-bottom: 0.5rem;">Logado como:</div>
+                            <div style="font-weight: 500;">${currentAdminUser.email}</div>
+                            <button id="logout-btn" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.875rem; padding: 0.5rem 1rem;">
+                                Sair
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-content">
+                        <div style="margin-bottom: 2rem;">
+                            <h1 class="page-title">Briefings Recebidos</h1>
+                            <p style="color: #666;">Visualize e gerencie os briefings enviados pelos clientes</p>
+                        </div>
+                        
+                        <div class="card" style="margin-bottom: 1.5rem;">
+                            <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                                <div style="flex-grow: 1;">
+                                    <input type="text" id="search-input" placeholder="Buscar por nome, empresa..." class="form-control">
+                                </div>
+                                <div>
+                                    <select id="filter-select" class="form-control">
+                                        <option value="all">Todos os briefings</option>
+                                        <option value="novo">Novos</option>
+                                        <option value="em_analise">Em análise</option>
+                                        <option value="respondido">Respondidos</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="responses-container">
+                            <div class="card" style="text-align: center; padding: 2rem;">
+                                <div class="loader" style="margin: 0 auto;"></div>
+                                <p style="margin-top: 1rem; color: #666;">Carregando briefings...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Botão de Logout
+            document.getElementById('logout-btn').addEventListener('click', async function() {
+                try {
+                    await auth.signOut();
+                    showToast('Logout realizado com sucesso', 'success');
+                    // O onAuthStateChanged será disparado e carregará o formulário de briefing
+                } catch (error) {
+                    console.error('Erro de logout:', error);
+                    showToast('Erro ao fazer logout', 'error');
+                }
+            });
+
+            // Funcionalidade de Busca e Filtro
+            const searchInput = document.getElementById('search-input');
+            const filterSelect = document.getElementById('filter-select');
+
+            // Adiciona ouvintes para carregar briefings ao digitar/mudar filtro
+            searchInput.addEventListener('input', () => loadBriefings(searchInput.value, filterSelect.value));
+            filterSelect.addEventListener('change', () => loadBriefings(searchInput.value, filterSelect.value));
+
+            // Carrega os briefings iniciais para o dashboard
+            loadBriefings();
+        }
+
+        // Carrega briefings do Firestore com filtros e busca
+        function loadBriefings(searchTerm = '', filterValue = 'all') {
+            const responsesContainer = document.getElementById('responses-container');
+            responsesContainer.innerHTML = `
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div class="loader" style="margin: 0 auto;"></div>
+                    <p style="margin-top: 1rem; color: #666;">Carregando briefings...</p>
+                </div>
+            `; // Mostra loader enquanto carrega
+
+            let query = db.collection('briefings').orderBy('timestamp', 'desc');
+
+            // Aplica filtro de status
+            if (filterValue !== 'all') {
+                query = query.where('status', '==', filterValue);
+            }
+
+            query.get().then((querySnapshot) => {
+                const briefings = [];
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    data.id = doc.id; // Adiciona o ID do documento
+                    briefings.push(data);
+                });
+
+                // Aplica filtro de busca (client-side, pois Firestore não permite busca parcial em strings simples)
+                let filteredAndSearchedBriefings = briefings;
+                if (searchTerm) {
+                    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+                    filteredAndSearchedBriefings = briefings.filter(briefing => {
+                        const companyName = (briefing.company_name || '').toLowerCase();
+                        const contactName = (briefing.contact_name || '').toLowerCase();
+                        const companySegment = (briefing.company_segment || '').toLowerCase();
+                        const contactEmail = (briefing.contact_email || '').toLowerCase();
+
+                        return companyName.includes(lowerCaseSearchTerm) ||
+                               contactName.includes(lowerCaseSearchTerm) ||
+                               companySegment.includes(lowerCaseSearchTerm) ||
+                               contactEmail.includes(lowerCaseSearchTerm);
+                    });
+                }
+
+                if (filteredAndSearchedBriefings.length === 0) {
+                    responsesContainer.innerHTML = `
+                        <div class="card" style="text-align: center; color: #666; padding: 2rem;">
+                            <p>Nenhum briefing encontrado com os filtros aplicados.</p>
+                        </div>
+                    `;
+                } else {
+                    responsesContainer.innerHTML = filteredAndSearchedBriefings.map(briefing => `
+                        <div class="card response-card" data-id="${briefing.id}">
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                    <div>
+                                        <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--azul-escuro); margin: 0;">
+                                            ${briefing.company_name || 'Empresa não informada'}
+                                        </h3>
+                                        <p style="color: #666; margin: 0.25rem 0 0 0;">
+                                            ${briefing.contact_name || 'Nome não informado'}
+                                        </p>
+                                    </div>
+                                    <div style="font-size: 0.875rem; color: #666;">
+                                        ${formatDate(briefing.timestamp)}
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="status-badge" style="
+                                        display: inline-block;
+                                        padding: 0.25rem 0.5rem;
+                                        border-radius: 4px;
+                                        font-size: 0.75rem;
+                                        font-weight: 600;
+                                        background-color: ${getStatusColor(briefing.status)};
+                                        color: white;
+                                    ">
+                                        ${getStatusLabel(briefing.status)}
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <p><strong>Segmento:</strong> ${briefing.company_segment || 'Não informado'}</p>
+                                <p style="margin-top: 0.5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                    ${briefing.company_description || 'Sem descrição'}
+                                </p>
+                            </div>
+                        </div>
+                    `).join('');
+
+                    attachResponseCardHandlers();
+                }
+            }).catch((error) => {
+                console.error('Erro ao carregar briefings:', error);
+                responsesContainer.innerHTML = `
+                    <div class="card" style="text-align: center; color: #f56565; padding: 2rem;">
+                        <p>Erro ao carregar briefings. Por favor, tente novamente.</p>
+                    </div>
+                `;
+            });
+        }
+
+        // Funções auxiliares para status
+        function getStatusColor(status) {
+            switch (status) {
+                case 'novo': return '#3182ce'; // Azul
+                case 'em_analise': return '#dd6b20'; // Laranja
+                case 'respondido': return '#38a169'; // Verde
+                default: return '#718096'; // Cinza
+            }
+        }
+
+        function getStatusLabel(status) {
+            switch (status) {
+                case 'novo': return 'Novo';
+                case 'em_analise': return 'Em análise';
+                case 'respondido': return 'Respondido';
+                default: return 'Desconhecido';
+            }
+        }
+
+        // Anexa manipuladores de clique aos cartões de resposta no dashboard
+        function attachResponseCardHandlers() {
+            const responseCards = document.querySelectorAll('.response-card');
+            responseCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const briefingId = this.dataset.id;
+                    showBriefingDetailModal(briefingId);
+                });
+            });
+        }
+
+        // --- NOVO CÓDIGO AQUI: Função para auto-redimensionar textareas ---
+        function autoResizeTextareas() {
+            const textareas = document.querySelectorAll('#briefing-modal-body textarea');
+            textareas.forEach(textarea => {
+                textarea.style.height = 'auto'; // Reseta a altura para que scrollHeight seja preciso
+                // Ajusta a altura para o scrollHeight, garantindo um mínimo para textareas vazias
+                textarea.style.height = Math.max(textarea.scrollHeight, 80) + 'px'; // 80px é o min-height CSS original
+            });
+        }
+        // --- FIM DO NOVO CÓDIGO ---
+
+        // Mostra o modal de detalhes do briefing
+        function showBriefingDetailModal(briefingId) {
+            const modal = document.getElementById('modal');
+            const briefingModalContent = document.getElementById('briefing-detail-modal-content');
+            const briefingModalTitle = document.getElementById('briefing-modal-title');
+            const briefingModalBody = document.getElementById('briefing-modal-body');
+
+            hideAllModals(); // Garante que outros modais estejam escondidos
+            briefingModalContent.classList.remove('hidden'); // Mostra o conteúdo do modal de detalhes
+            modal.style.display = 'flex'; // Exibe o overlay do modal
+
+            briefingModalBody.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <div class="loader" style="margin: 0 auto;"></div>
+                    <p style="margin-top: 1rem; color: #666;">Carregando detalhes...</p>
+                </div>
+            `;
+
+            db.collection('briefings').doc(briefingId).get().then((doc) => {
+                if (doc.exists) {
+                    const briefing = doc.data();
+                    briefing.id = doc.id; // Garante que o ID está no objeto
+
+                    briefingModalTitle.textContent = `Briefing: ${briefing.company_name || 'Empresa não informada'}`;
+
+                    // Conteúdo dinâmico do modal
+                    briefingModalBody.innerHTML = `
+                        <div style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+                            <div>
+                                <p style="font-size: 0.875rem; color: #666; margin: 0;">
+                                    Enviado em: ${formatDate(briefing.timestamp)}
+                                </p>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="status-badge" style="
+                                        display: inline-block;
+                                        padding: 0.25rem 0.5rem;
+                                        border-radius: 4px;
+                                        font-size: 0.75rem;
+                                        font-weight: 600;
+                                        background-color: ${getStatusColor(briefing.status)};
+                                        color: white;
+                                    ">
+                                        ${getStatusLabel(briefing.status)}
+                                    </span>
+                                </div>
+                            </div>
+                            ${currentAdminUser ? `
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                                <select id="status-select" class="form-control" style="width: auto; flex-grow: 1;">
+                                    <option value="novo" ${briefing.status === 'novo' ? 'selected' : ''}>Novo</option>
+                                    <option value="em_analise" ${briefing.status === 'em_analise' ? 'selected' : ''}>Em análise</option>
+                                    <option value="respondido" ${briefing.status === 'respondido' ? 'selected' : ''}>Respondido</option>
+                                </select>
+                                <button id="update-status-btn" class="btn btn-primary" style="font-size: 0.875rem;">Atualizar status</button>
+                            </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Sobre a empresa</h4>
+                            <div class="grid">
+                                <div><p><strong>Nome da empresa</strong></p><div class="modal-detail-value">${briefing.company_name || 'Não informado'}</div></div>
+                                <div><p><strong>Segmento de atuação</strong></p><div class="modal-detail-value">${briefing.company_segment || 'Não informado'}</div></div>
+                            </div>
+                            <div><p><strong>Descrição da empresa</strong></p><div class="modal-detail-value">${briefing.company_description || 'Não informado'}</div></div>
+                            <div><p><strong>Diferenciais</strong></p><div class="modal-detail-value">${briefing.company_differentials || 'Não informado'}</div></div>
+                            <div><p><strong>Concorrentes</strong></p><div class="modal-detail-value">${briefing.company_competitors || 'Não informado'}</div></div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+                            <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Objetivos</h4>
+                            <div><p><strong>Principais objetivos</strong></p><div class="modal-detail-value">${briefing.project_objectives || 'Não informado'}</div></div>
+                            <div><p><strong>Público-alvo</strong></p><div class="modal-detail-value">${briefing.target_audience || 'Não informado'}</div></div>
+                            <div><p><strong>Resultados esperados</strong></p><div class="modal-detail-value">${briefing.expected_results || 'Não informado'}</div></div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+                            <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Identidade visual</h4>
+                            <div class="grid">
+                                <div><p><strong>Possui logotipo?</strong></p><div class="modal-detail-value">${briefing.has_logo || 'Não informado'}</div></div>
+                                <div><p><strong>Possui manual de identidade?</strong></p><div class="modal-detail-value">${briefing.has_brand_manual || 'Não informado'}</div></div>
+                            </div>
+                            <div><p><strong>Cores da marca</strong></p><div class="modal-detail-value">${briefing.brand_colors || 'Não informado'}</div></div>
+                            <div><p><strong>Estilo visual preferido</strong></p><div class="modal-detail-value">${briefing.visual_style || 'Não informado'}</div></div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+                            <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Comunicação</h4>
+                            <div><p><strong>Tom de voz da marca</strong></p><div class="modal-detail-value">${briefing.brand_tone || 'Não informado'}</div></div>
+                            <div><p><strong>Principais mensagens</strong></p><div class="modal-detail-value">${briefing.key_messages || 'Não informado'}</div></div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+                            <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Site</h4>
+                            <div><p><strong>Páginas/seções desejadas</strong></p><div class="modal-detail-value">${briefing.site_sections || 'Não informado'}</div></div>
+                            <div class="grid" style="margin-top: 1rem;">
+                                <div><p><strong>Possui domínio?</strong></p><div class="modal-detail-value">${briefing.has_domain || 'Não informado'}</div></div>
+                                <div><p><strong>Possui hospedagem?</strong></p><div class="modal-detail-value">${briefing.has_hosting || 'Não informado'}</div></div>
+                            </div>
+                            <div><p><strong>Funcionalidades desejadas</strong></p><div class="modal-detail-value">${briefing.site_features || 'Não informado'}</div></div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+                            <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Inspirações</h4>
+                            <div><p><strong>Sites de referência</strong></p><div class="modal-detail-value">${briefing.reference_sites || 'Não informado'}</div></div>
+                            <div><p><strong>O que gosta nas referências</strong></p><div class="modal-detail-value">${briefing.reference_likes || 'Não informado'}</div></div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+                            <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Informações técnicas</h4>
+                            <div><p><strong>Preferências de tecnologia</strong></p><div class="modal-detail-value">${briefing.tech_preferences || 'Não informado'}</div></div>
+                            <div><p><strong>Integrações necessárias</strong></p><div class="modal-detail-value">${briefing.integrations || 'Não informado'}</div></div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+                            <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Observações</h4>
+                            <div><p><strong>Informações adicionais</strong></p><div class="modal-detail-value">${briefing.additional_info || 'Não informado'}</div></div>
+                            <div class="grid" style="margin-top: 1rem;">
+                                <div><p><strong>Prazo desejado</strong></p><div class="modal-detail-value">${briefing.project_deadline || 'Não informado'}</div></div>
+                                <div><p><strong>Orçamento disponível</strong></p><div class="modal-detail-value">${briefing.project_budget || 'Não informado'}</div></div>
+                            </div>
+                        </div>
+                        
+                        <div style="padding-top: 1.5rem; border-top: 1px solid #eee;">
+                            <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">Informações de contato</h4>
+                            <div class="grid">
+                                <div><p><strong>Nome</strong></p><div class="modal-detail-value">${briefing.contact_name || 'Não informado'}</div></div>
+                                <div><p><strong>E-mail</strong></p><div class="modal-detail-value">${briefing.contact_email || 'Não informado'}</div></div>
+                                <div><p><strong>Telefone</strong></p><div class="modal-detail-value">${briefing.contact_phone || 'Não informado'}</div></div>
+                            </div>
+                        </div>
+
+                        ${currentAdminUser ? `
+                        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid #eee;">
+                            <h4 style="font-size: 1.125rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 1rem;">
+                                Notas internas
+                            </h4>
+                            <div class="form-group">
+                                <textarea id="notes-input" class="form-control" placeholder="Adicione notas internas sobre este briefing...">${briefing.internal_notes || ''}</textarea>
+                            </div>
+                            <div style="text-align: right; margin-top: 1rem;">
+                                <button id="save-notes-btn" class="btn btn-primary">Salvar notas</button>
+                            </div>
+                        </div>
+                        ` : ''}
+                    `;
+                    
+                    // --- NOVO CÓDIGO AQUI: Ajusta textareas após o conteúdo ser carregado ---
+                    autoResizeTextareas();
+                    // --- FIM DO NOVO CÓDIGO ---
+
+                    // Adiciona manipuladores de eventos para atualização de status e notas
+                    if (currentAdminUser) {
+                        document.getElementById('update-status-btn').addEventListener('click', async function() {
+                            const newStatus = document.getElementById('status-select').value;
+                            try {
+                                await db.collection('briefings').doc(briefingId).update({
+                                    status: newStatus,
+                                    status_updated_at: firebase.firestore.FieldValue.serverTimestamp()
+                                });
+                                showToast('Status atualizado com sucesso', 'success');
+                                // Atualiza o badge no modal e recarrega o dashboard em segundo plano
+                                const statusBadge = document.querySelector('.status-badge');
+                                statusBadge.textContent = getStatusLabel(newStatus);
+                                statusBadge.style.backgroundColor = getStatusColor(newStatus);
+                                loadBriefings(document.getElementById('search-input').value, document.getElementById('filter-select').value);
+                            } catch (error) {
+                                console.error('Erro ao atualizar status:', error);
+                                showToast('Erro ao atualizar status', 'error');
+                            }
+                        });
+
+                        document.getElementById('save-notes-btn').addEventListener('click', async function() {
+                            const notes = document.getElementById('notes-input').value;
+                            try {
+                                await db.collection('briefings').doc(briefingId).update({
+                                    internal_notes: notes,
+                                    notes_updated_at: firebase.firestore.FieldValue.serverTimestamp()
+                                });
+                                showToast('Notas salvas com sucesso', 'success');
+                            } catch (error) {
+                                console.error('Erro ao salvar notas:', error);
+                                showToast('Erro ao salvar notas', 'error');
+                            }
+                        });
+                    }
+
+                } else {
+                    briefingModalBody.innerHTML = `
+                        <div style="text-align: center; color: #f56565; padding: 2rem;">
+                            <p>Briefing não encontrado.</p>
+                        </div>
+                    `;
+                }
+            }).catch((error) => {
+                console.error('Erro ao obter briefing:', error);
+                briefingModalBody.innerHTML = `
+                    <div style="text-align: center; color: #f56565; padding: 2rem;">
+                        <p>Erro ao carregar detalhes do briefing.</p>
+                    </div>
+                `;
+            });
+
+            // Configura os botões de fechar do modal de detalhes de briefing
+            document.getElementById('close-briefing-modal').onclick = hideAllModals;
+            modal.onclick = (e) => { // Fecha o modal ao clicar no overlay
+                if (e.target === modal) hideAllModals();
+            };
+        }
+
+
+        // --- Inicialização da Aplicação ---
+
+        // Ouve as mudanças de estado da autenticação do Firebase
+        // Esta é a função mais importante para decidir qual conteúdo carregar
+        auth.onAuthStateChanged((user) => {
+            currentAdminUser = user; // Atualiza o usuário logado
+
+            // Garante que o conteúdo correto é carregado quando o estado de autenticação muda
+            if (currentAdminUser) {
+                // Se o usuário logou, ou já estava logado e refresh, vai para o dashboard
+                loadAdminDashboard();
+            } else {
+                // Se o usuário deslogou ou não está logado, vai para o formulário de briefing
+                loadBriefingForm();
+            }
+        });
+
+        // Configura os manipuladores de eventos para os links de navegação
+        document.addEventListener('DOMContentLoaded', () => {
+            // Link Home no logo
+            document.getElementById('home-link').addEventListener('click', function(e) {
+                e.preventDefault(); // IMPEDE A NAVEGAÇÃO
+                loadBriefingForm();
+            });
+
+            // Link Home no menu
+            document.getElementById('nav-home-link').addEventListener('click', function(e) {
+                e.preventDefault(); // IMPEDE A NAVEGAÇÃO
+                loadBriefingForm();
+            });
+
+            // Link Admin no menu
+            document.getElementById('nav-admin-link').addEventListener('click', function(e) {
+                e.preventDefault(); // IMPEDE A NAVEGAÇÃO
+                if (currentAdminUser) {
+                    // Se o admin já estiver logado, vai direto para o dashboard
+                    loadAdminDashboard();
+                } else {
+                    // Caso contrário, abre o modal de login
+                    loadAdminLoginModal();
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
